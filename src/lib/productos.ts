@@ -35,54 +35,7 @@ export const subcategoriasPorCategoria: Record<string, string[]> = {
 
 export const colecciones = ["Todas", "Colección Victoria", "Colección Oslo"];
 
-export const productos: Producto[] = [
-  { nombre: "Sofá Milán 3 puestos", categoria: "Sofás", coleccion: "Colección Victoria", stock: 12, precio: "$2.450.000" },
-  {
-    nombre: "Mesa de comedor Roble",
-    categoria: "Mesas",
-    subcategoria: "Mesas de comedor",
-    coleccion: "Colección Oslo",
-    stock: 4,
-    precio: "$1.890.000",
-  },
-  {
-    nombre: "Mesa de centro Nórdica",
-    categoria: "Mesas",
-    subcategoria: "Mesas de centro",
-    coleccion: "Colección Oslo",
-    stock: 9,
-    precio: "$680.000",
-  },
-  {
-    nombre: "Mesa de noche Roble",
-    categoria: "Mesas",
-    subcategoria: "Mesas de noche",
-    coleccion: "Colección Victoria",
-    stock: 14,
-    precio: "$390.000",
-  },
-  { nombre: "Cama Nórdica Queen", categoria: "Camas", coleccion: "Colección Oslo", stock: 7, precio: "$1.320.000" },
-  {
-    nombre: "Silla Escandinava",
-    categoria: "Sillas",
-    subcategoria: "Fijas",
-    coleccion: "Colección Oslo",
-    stock: 25,
-    precio: "$310.000",
-  },
-  {
-    nombre: "Mecedora Boho Rattan",
-    categoria: "Sillas",
-    subcategoria: "Mecedoras",
-    coleccion: "Colección Oslo",
-    stock: 8,
-    precio: "$890.000",
-  },
-  { nombre: "Espejo Redondo Latón", categoria: "Espejos", coleccion: "Colección Oslo", stock: 15, precio: "$240.000" },
-  { nombre: "Set de Cojines Boho", categoria: "Cojines", coleccion: "Colección Oslo", stock: 30, precio: "$120.000" },
-  { nombre: "Jarrón Cerámico Artesanal", categoria: "Decoración", coleccion: "Colección Oslo", stock: 20, precio: "$95.000" },
-  { nombre: "Juego de Comedor 6 Puestos", categoria: "Comedor", coleccion: "Colección Victoria", stock: 3, precio: "$3.200.000" },
-];
+export const productos: Producto[] = [];
 
 export const piezasCatalogo: PiezaCatalogo[] = [
   {

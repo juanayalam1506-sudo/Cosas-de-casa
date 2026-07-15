@@ -28,8 +28,7 @@ export default function InventarioPage() {
         <div>
           <h1 className="text-xl font-semibold text-black">Inventario</h1>
           <p className="mt-1 text-sm text-black/50">
-            Stock de lo que se vende regularmente. Datos de ejemplo — la conexión a Supabase se
-            agregará después.
+            Stock de lo que se vende regularmente. Todavía sin conectar a Supabase.
           </p>
         </div>
         <span className="rounded-full bg-brand-pink/20 px-3 py-1 text-xs font-medium text-black/70">
@@ -47,11 +46,15 @@ export default function InventarioPage() {
           />
         )}
 
-        <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {productosFiltrados.map((p) => (
-            <ProductCard key={p.nombre} producto={p} />
-          ))}
-        </div>
+        {productosFiltrados.length === 0 ? (
+          <p className="pt-6 text-sm text-black/40">Aún no hay productos cargados.</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {productosFiltrados.map((p) => (
+              <ProductCard key={p.nombre} producto={p} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

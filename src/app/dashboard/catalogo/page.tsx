@@ -22,11 +22,27 @@ export default function CatalogoPage() {
   const [formAbierto, setFormAbierto] = useState(false);
   const [categoriaPersonalizable, setCategoriaPersonalizable] = useState("Todos");
   const [subcategoriaPersonalizable, setSubcategoriaPersonalizable] = useState("Todas");
+  const [categoriaColeccion, setCategoriaColeccion] = useState("Todos");
+  const [subcategoriaColeccion, setSubcategoriaColeccion] = useState("Todas");
 
-  const productosFiltrados =
-    coleccionActiva === "Todas"
-      ? productos
-      : productos.filter((p) => p.coleccion === coleccionActiva);
+  const subcategoriasDisponiblesColeccion = subcategoriasPorCategoria[categoriaColeccion];
+
+  const handleCategoriaColeccionChange = (nuevaCategoria: string) => {
+    setCategoriaColeccion(nuevaCategoria);
+    setSubcategoriaColeccion("Todas");
+  };
+
+  const productosFiltrados = productos.filter((p) => {
+    if (coleccionActiva !== "Todas" && p.coleccion !== coleccionActiva) return false;
+    if (categoriaColeccion !== "Todos" && p.categoria !== categoriaColeccion) return false;
+    if (
+      subcategoriasDisponiblesColeccion &&
+      subcategoriaColeccion !== "Todas" &&
+      p.subcategoria !== subcategoriaColeccion
+    )
+      return false;
+    return true;
+  });
 
   const subcategoriasDisponibles = subcategoriasPorCategoria[categoriaPersonalizable];
 
@@ -94,13 +110,30 @@ export default function CatalogoPage() {
       </div>
 
       {tab === "colecciones" ? (
-        <div className="mt-6">
+        <div className="mt-6 space-y-3">
           <CategoryFilter categorias={colecciones} activa={coleccionActiva} onChange={setColeccionActiva} />
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {productosFiltrados.map((p) => (
-              <CollectionItemCard key={p.nombre} producto={p} />
-            ))}
-          </div>
+          <CategoryFilter
+            categorias={categorias}
+            activa={categoriaColeccion}
+            onChange={handleCategoriaColeccionChange}
+          />
+          {subcategoriasDisponiblesColeccion && (
+            <CategoryFilter
+              categorias={["Todas", ...subcategoriasDisponiblesColeccion]}
+              activa={subcategoriaColeccion}
+              onChange={setSubcategoriaColeccion}
+            />
+          )}
+
+          {productosFiltrados.length === 0 ? (
+            <p className="pt-6 text-sm text-black/40">Aún no hay productos cargados.</p>
+          ) : (
+            <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {productosFiltrados.map((p) => (
+                <CollectionItemCard key={p.nombre} producto={p} />
+              ))}
+            </div>
+          )}
         </div>
       ) : (
         <div className="mt-6 space-y-3">
