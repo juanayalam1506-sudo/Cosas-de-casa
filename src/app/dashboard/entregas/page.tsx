@@ -2,21 +2,22 @@
 
 import { useMemo, useState } from "react";
 import DeliveryCalendar from "@/components/DeliveryCalendar";
-import { entregas, estadoStyles, franjas } from "@/lib/entregas";
+import { entregas, estadoStyles, franjas, formatearHora, obtenerFranja } from "@/lib/entregas";
 
 export default function EntregasPage() {
   const [fechaSeleccionada, setFechaSeleccionada] = useState<string | null>(null);
 
-  const entregasFiltradas = fechaSeleccionada
-    ? entregas.filter((e) => e.fecha === fechaSeleccionada)
-    : entregas;
+  const entregasFiltradas = useMemo(() => {
+    const base = fechaSeleccionada ? entregas.filter((e) => e.fecha === fechaSeleccionada) : entregas;
+    return [...base].sort((a, b) => (a.fecha === b.fecha ? a.hora.localeCompare(b.hora) : a.fecha.localeCompare(b.fecha)));
+  }, [fechaSeleccionada]);
 
   const entregasPorFranja = useMemo(() => {
     if (!fechaSeleccionada) return null;
     const delDia = entregas.filter((e) => e.fecha === fechaSeleccionada);
     return {
-      mañana: delDia.filter((e) => e.franja === "mañana").length,
-      tarde: delDia.filter((e) => e.franja === "tarde").length,
+      mañana: delDia.filter((e) => obtenerFranja(e.hora) === "mañana").length,
+      tarde: delDia.filter((e) => obtenerFranja(e.hora) === "tarde").length,
     };
   }, [fechaSeleccionada]);
 
@@ -46,11 +47,11 @@ export default function EntregasPage() {
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
               <div className="flex gap-4 text-sm text-black/60">
                 <span>
-                  {franjas.mañana.label} ({franjas.mañana.inicio} – {franjas.mañana.fin}):{" "}
+                  {franjas.mañana.label} ({formatearHora(franjas.mañana.inicio)} – {formatearHora(franjas.mañana.fin)}):{" "}
                   {entregasPorFranja.mañana}
                 </span>
                 <span>
-                  {franjas.tarde.label} ({franjas.tarde.inicio} – {franjas.tarde.fin}):{" "}
+                  {franjas.tarde.label} ({formatearHora(franjas.tarde.inicio)} – {formatearHora(franjas.tarde.fin)}):{" "}
                   {entregasPorFranja.tarde}
                 </span>
               </div>
@@ -72,7 +73,7 @@ export default function EntregasPage() {
                   <th className="px-4 py-3 font-medium">Producto</th>
                   <th className="px-4 py-3 font-medium">Estado</th>
                   <th className="px-4 py-3 font-medium">Fecha</th>
-                  <th className="px-4 py-3 font-medium">Horario</th>
+                  <th className="px-4 py-3 font-medium">Hora</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-brand-gray/10">
@@ -86,9 +87,7 @@ export default function EntregasPage() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-black/70">{e.fecha}</td>
-                    <td className="px-4 py-3 text-black/70">
-                      {franjas[e.franja].label} ({franjas[e.franja].inicio} – {franjas[e.franja].fin})
-                    </td>
+                    <td className="px-4 py-3 text-black/70">{formatearHora(e.hora)}</td>
                   </tr>
                 ))}
               </tbody>
