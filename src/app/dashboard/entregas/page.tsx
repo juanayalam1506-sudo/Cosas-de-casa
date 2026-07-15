@@ -1,14 +1,4 @@
-const entregas = [
-  { cliente: "María Fernanda Ortiz", producto: "Sofá Milán 3 puestos", estado: "En ruta", fecha: "2026-07-16" },
-  { cliente: "Carlos Andrés Peña", producto: "Mesa de comedor Roble", estado: "Programada", fecha: "2026-07-18" },
-  { cliente: "Laura Gómez", producto: "Cama Nórdica Queen", estado: "Entregada", fecha: "2026-07-10" },
-];
-
-const estadoStyles: Record<string, string> = {
-  "En ruta": "bg-blue-100 text-blue-800",
-  Programada: "bg-brand-pink/25 text-black/70",
-  Entregada: "bg-green-100 text-green-800",
-};
+import { entregas, estadoStyles } from "@/lib/entregas";
 
 export default function EntregasPage() {
   return (
