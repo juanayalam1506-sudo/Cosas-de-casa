@@ -7,24 +7,59 @@ import Modal from "@/components/Modal";
 import NewProductForm from "@/components/NewProductForm";
 import ProductCard from "@/components/ProductCard";
 import ProductTable from "@/components/ProductTable";
+import StockHistory from "@/components/StockHistory";
 import {
   categorias,
   parsePrecio,
   productos as productosIniciales,
   subcategoriasPorCategoria,
+  type MovimientoStock,
   type Producto,
 } from "@/lib/productos";
 
 type Orden = "nombre" | "precio-asc" | "precio-desc" | "stock-asc" | "stock-desc";
 
+function productosACSV(productos: Producto[]): string {
+  const columnas = [
+    "Código",
+    "Nombre",
+    "Categoría",
+    "Subcategoría",
+    "Colección",
+    "Estado",
+    "Proveedor",
+    "Stock",
+    "Stock objetivo",
+    "Precio",
+  ];
+  const filas = productos.map((p) => [
+    p.codigo,
+    p.nombre,
+    p.categoria,
+    p.subcategoria ?? "",
+    p.coleccion,
+    p.estado ?? "Activo",
+    p.proveedor ?? "",
+    String(p.stock),
+    p.stockObjetivo !== undefined ? String(p.stockObjetivo) : "",
+    p.precio,
+  ]);
+  return [columnas, ...filas]
+    .map((fila) => fila.map((valor) => `"${valor.replace(/"/g, '""')}"`).join(","))
+    .join("\n");
+}
+
 export default function InventarioPage() {
   const [productos, setProductos] = useState<Producto[]>(productosIniciales);
+  const [movimientos, setMovimientos] = useState<MovimientoStock[]>([]);
   const [categoria, setCategoria] = useState("Todos");
   const [subcategoria, setSubcategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
   const [orden, setOrden] = useState<Orden>("nombre");
   const [vista, setVista] = useState<"tarjetas" | "tabla">("tarjetas");
+  const [soloReabastecer, setSoloReabastecer] = useState(false);
   const [formAbierto, setFormAbierto] = useState(false);
+  const [historialProducto, setHistorialProducto] = useState<Producto | null>(null);
 
   const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
 
@@ -37,12 +72,17 @@ export default function InventarioPage() {
     const filtrados = productos.filter((p) => {
       if (categoria !== "Todos" && p.categoria !== categoria) return false;
       if (subcategoriasDisponibles && subcategoria !== "Todas" && p.subcategoria !== subcategoria) return false;
+      if (soloReabastecer && (p.stock > 5 || p.estado === "Descontinuado")) return false;
       const termino = busqueda.trim().toLowerCase();
       if (termino && !p.nombre.toLowerCase().includes(termino) && !p.codigo.toLowerCase().includes(termino)) {
         return false;
       }
       return true;
     });
+
+    if (soloReabastecer) {
+      return [...filtrados].sort((a, b) => a.stock - b.stock);
+    }
 
     const ordenados = [...filtrados];
     switch (orden) {
@@ -62,12 +102,43 @@ export default function InventarioPage() {
         ordenados.sort((a, b) => a.nombre.localeCompare(b.nombre));
     }
     return ordenados;
-  }, [productos, categoria, subcategoria, subcategoriasDisponibles, busqueda, orden]);
+  }, [productos, categoria, subcategoria, subcategoriasDisponibles, busqueda, orden, soloReabastecer]);
 
   const agregarProducto = (producto: Producto) => {
     setProductos((actual) => [...actual, producto]);
     setFormAbierto(false);
   };
+
+  const ajustarStock = (producto: Producto, delta: number) => {
+    setProductos((actual) =>
+      actual.map((p) => (p.codigo === producto.codigo ? { ...p, stock: Math.max(0, p.stock + delta) } : p)),
+    );
+    setMovimientos((actual) => [
+      {
+        id: crypto.randomUUID(),
+        codigo: producto.codigo,
+        tipo: delta > 0 ? "entrada" : "salida",
+        cantidad: Math.abs(delta),
+        fecha: new Date().toISOString().slice(0, 10),
+      },
+      ...actual,
+    ]);
+  };
+
+  const exportarCSV = () => {
+    const csv = productosACSV(productosFiltrados);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const enlace = document.createElement("a");
+    enlace.href = url;
+    enlace.download = "inventario.csv";
+    enlace.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const historialDelProducto = historialProducto
+    ? movimientos.filter((m) => m.codigo === historialProducto.codigo)
+    : [];
 
   return (
     <div>
@@ -78,13 +149,22 @@ export default function InventarioPage() {
             Stock de lo que se vende regularmente. Todavía sin conectar a Supabase.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => setFormAbierto(true)}
-          className="rounded-lg bg-brand-pink px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-pink/90"
-        >
-          + Agregar producto
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={exportarCSV}
+            className="rounded-lg border border-brand-gray/30 px-3 py-1.5 text-sm font-medium text-black/70 hover:bg-brand-pink/10"
+          >
+            Exportar CSV
+          </button>
+          <button
+            type="button"
+            onClick={() => setFormAbierto(true)}
+            className="rounded-lg bg-brand-pink px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-pink/90"
+          >
+            + Agregar producto
+          </button>
+        </div>
       </div>
 
       <InventorySummary productos={productos} />
@@ -99,11 +179,22 @@ export default function InventarioPage() {
             className="w-full max-w-xs rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
           />
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="flex items-center gap-2 rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black/70">
+              <input
+                type="checkbox"
+                checked={soloReabastecer}
+                onChange={(e) => setSoloReabastecer(e.target.checked)}
+                className="accent-brand-pink"
+              />
+              Solo por reabastecer
+            </label>
+
             <select
               value={orden}
               onChange={(e) => setOrden(e.target.value as Orden)}
-              className="rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+              disabled={soloReabastecer}
+              className="rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink disabled:opacity-40"
             >
               <option value="nombre">Nombre (A-Z)</option>
               <option value="precio-asc">Precio: menor a mayor</option>
@@ -149,18 +240,31 @@ export default function InventarioPage() {
         ) : vista === "tarjetas" ? (
           <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {productosFiltrados.map((p) => (
-              <ProductCard key={p.nombre} producto={p} />
+              <ProductCard
+                key={p.codigo}
+                producto={p}
+                onAjustarStock={(delta) => ajustarStock(p, delta)}
+                onVerHistorial={() => setHistorialProducto(p)}
+              />
             ))}
           </div>
         ) : (
           <div className="pt-3">
-            <ProductTable productos={productosFiltrados} />
+            <ProductTable productos={productosFiltrados} onAjustarStock={ajustarStock} onVerHistorial={setHistorialProducto} />
           </div>
         )}
       </div>
 
       <Modal open={formAbierto} onClose={() => setFormAbierto(false)} title="Agregar producto">
         <NewProductForm onSubmit={agregarProducto} onCancel={() => setFormAbierto(false)} />
+      </Modal>
+
+      <Modal
+        open={historialProducto !== null}
+        onClose={() => setHistorialProducto(null)}
+        title={historialProducto ? `Historial · ${historialProducto.nombre}` : "Historial"}
+      >
+        <StockHistory movimientos={historialDelProducto} />
       </Modal>
     </div>
   );

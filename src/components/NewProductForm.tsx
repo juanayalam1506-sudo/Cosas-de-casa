@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { categorias, colecciones, subcategoriasPorCategoria, type Producto } from "@/lib/productos";
+import {
+  categorias,
+  colecciones,
+  estadosProducto,
+  subcategoriasPorCategoria,
+  type Producto,
+} from "@/lib/productos";
 
 const categoriasSeleccionables = categorias.filter((c) => c !== "Todos");
 const coleccionesSeleccionables = colecciones.filter((c) => c !== "Todas");
@@ -21,6 +27,8 @@ export default function NewProductForm({
   const [stock, setStock] = useState("");
   const [stockObjetivo, setStockObjetivo] = useState("");
   const [precio, setPrecio] = useState("");
+  const [proveedor, setProveedor] = useState("");
+  const [estado, setEstado] = useState(estadosProducto[0]);
 
   const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
 
@@ -42,6 +50,8 @@ export default function NewProductForm({
       stock: Number(stock),
       stockObjetivo: stockObjetivo.trim() ? Number(stockObjetivo) : undefined,
       precio: precio.trim(),
+      proveedor: proveedor.trim() || undefined,
+      estado,
     });
   };
 
@@ -176,6 +186,37 @@ export default function NewProductForm({
           required
           className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
         />
+      </div>
+
+      <div>
+        <label htmlFor="proveedor" className="mb-1 block text-sm font-medium text-black/70">
+          Proveedor
+        </label>
+        <input
+          id="proveedor"
+          value={proveedor}
+          onChange={(e) => setProveedor(e.target.value)}
+          placeholder="Ej. Maderas del Llano"
+          className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="estado" className="mb-1 block text-sm font-medium text-black/70">
+          Estado
+        </label>
+        <select
+          id="estado"
+          value={estado}
+          onChange={(e) => setEstado(e.target.value as (typeof estadosProducto)[number])}
+          className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+        >
+          {estadosProducto.map((e) => (
+            <option key={e} value={e}>
+              {e}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="flex justify-end gap-2 pt-2">

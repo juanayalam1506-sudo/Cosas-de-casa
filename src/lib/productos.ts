@@ -1,3 +1,5 @@
+export type EstadoProducto = "Activo" | "Descontinuado" | "En tránsito";
+
 export type Producto = {
   codigo: string;
   nombre: string;
@@ -7,6 +9,8 @@ export type Producto = {
   stock: number;
   stockObjetivo?: number;
   precio: string;
+  proveedor?: string;
+  estado?: EstadoProducto;
 };
 
 export type PiezaCatalogo = {
@@ -16,6 +20,14 @@ export type PiezaCatalogo = {
   subcategoria?: string;
   descripcion: string;
   desde: string;
+};
+
+export type MovimientoStock = {
+  id: string;
+  codigo: string;
+  tipo: "entrada" | "salida";
+  cantidad: number;
+  fecha: string;
 };
 
 export const categorias = [
@@ -42,6 +54,14 @@ export const coleccionStyles: Record<string, string> = {
   "Colección Oslo": "bg-brand-gray/15 text-black/70",
 };
 
+export const estadosProducto: EstadoProducto[] = ["Activo", "Descontinuado", "En tránsito"];
+
+export const estadoProductoStyles: Record<EstadoProducto, string> = {
+  Activo: "bg-green-100 text-green-800",
+  Descontinuado: "bg-black/10 text-black/50",
+  "En tránsito": "bg-blue-100 text-blue-800",
+};
+
 export function parsePrecio(precio: string): number {
   return Number(precio.replace(/\D/g, "")) || 0;
 }
@@ -55,6 +75,8 @@ export const productos: Producto[] = [
     stock: 12,
     stockObjetivo: 15,
     precio: "$2.450.000",
+    proveedor: "Tapizados Andrade",
+    estado: "Activo",
   },
   {
     codigo: "SOF-002",
@@ -64,6 +86,8 @@ export const productos: Producto[] = [
     stock: 3,
     stockObjetivo: 10,
     precio: "$1.980.000",
+    proveedor: "Tapizados Andrade",
+    estado: "Activo",
   },
   {
     codigo: "COM-001",
@@ -73,6 +97,8 @@ export const productos: Producto[] = [
     stock: 3,
     stockObjetivo: 6,
     precio: "$3.200.000",
+    proveedor: "Maderas del Llano",
+    estado: "Activo",
   },
   {
     codigo: "MES-001",
@@ -83,6 +109,8 @@ export const productos: Producto[] = [
     stock: 4,
     stockObjetivo: 8,
     precio: "$1.890.000",
+    proveedor: "Maderas del Llano",
+    estado: "Activo",
   },
   {
     codigo: "MES-002",
@@ -93,6 +121,8 @@ export const productos: Producto[] = [
     stock: 9,
     stockObjetivo: 12,
     precio: "$780.000",
+    proveedor: "Maderas del Llano",
+    estado: "Activo",
   },
   {
     codigo: "MES-003",
@@ -103,6 +133,8 @@ export const productos: Producto[] = [
     stock: 18,
     stockObjetivo: 20,
     precio: "$420.000",
+    proveedor: "Maderas del Llano",
+    estado: "En tránsito",
   },
   {
     codigo: "MES-004",
@@ -113,6 +145,8 @@ export const productos: Producto[] = [
     stock: 6,
     stockObjetivo: 10,
     precio: "$350.000",
+    proveedor: "Maderas del Llano",
+    estado: "Activo",
   },
   {
     codigo: "CAM-001",
@@ -122,6 +156,8 @@ export const productos: Producto[] = [
     stock: 7,
     stockObjetivo: 10,
     precio: "$1.320.000",
+    proveedor: "Maderas del Llano",
+    estado: "Activo",
   },
   {
     codigo: "CAM-002",
@@ -131,6 +167,8 @@ export const productos: Producto[] = [
     stock: 2,
     stockObjetivo: 6,
     precio: "$2.100.000",
+    proveedor: "Maderas del Llano",
+    estado: "Activo",
   },
   {
     codigo: "SIL-001",
@@ -141,6 +179,8 @@ export const productos: Producto[] = [
     stock: 25,
     stockObjetivo: 24,
     precio: "$310.000",
+    proveedor: "Metalúrgica Andina",
+    estado: "Activo",
   },
   {
     codigo: "SIL-002",
@@ -151,6 +191,8 @@ export const productos: Producto[] = [
     stock: 8,
     stockObjetivo: 10,
     precio: "$890.000",
+    proveedor: "Rattan y Fibras S.A.S",
+    estado: "Activo",
   },
   {
     codigo: "ESP-001",
@@ -160,6 +202,8 @@ export const productos: Producto[] = [
     stock: 15,
     stockObjetivo: 15,
     precio: "$240.000",
+    proveedor: "Vidrios y Espejos del Meta",
+    estado: "Activo",
   },
   {
     codigo: "ESP-002",
@@ -169,6 +213,8 @@ export const productos: Producto[] = [
     stock: 5,
     stockObjetivo: 12,
     precio: "$260.000",
+    proveedor: "Vidrios y Espejos del Meta",
+    estado: "Descontinuado",
   },
   {
     codigo: "DEC-001",
@@ -178,6 +224,8 @@ export const productos: Producto[] = [
     stock: 10,
     stockObjetivo: 15,
     precio: "$180.000",
+    proveedor: "Decoraciones Llano",
+    estado: "Activo",
   },
   {
     codigo: "COJ-001",
@@ -187,6 +235,8 @@ export const productos: Producto[] = [
     stock: 30,
     stockObjetivo: 25,
     precio: "$95.000",
+    proveedor: "Textiles Boho",
+    estado: "Activo",
   },
 ];
 
