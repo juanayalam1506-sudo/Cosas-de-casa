@@ -19,7 +19,8 @@ export default function DeliveryCalendar({
   selectedFecha: string | null;
   onSelectDay: (fecha: string) => void;
 }) {
-  const fechaInicial = entregas[0]?.fecha ?? new Date().toISOString().slice(0, 10);
+  const hoy = new Date().toISOString().slice(0, 10);
+  const fechaInicial = entregas[0]?.fecha ?? hoy;
   const inicial = parseFecha(fechaInicial);
   const [vista, setVista] = useState({ year: inicial.year, month: inicial.month });
 
@@ -82,6 +83,7 @@ export default function DeliveryCalendar({
           const fecha = `${vista.year}-${String(vista.month).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
           const tieneEntrega = entregasPorDia.has(fecha);
           const seleccionado = fecha === selectedFecha;
+          const esHoy = fecha === hoy;
 
           return (
             <button
@@ -95,7 +97,7 @@ export default function DeliveryCalendar({
                   : tieneEntrega
                     ? "bg-brand-pink/15 font-medium text-black hover:bg-brand-pink/25"
                     : "text-black/30"
-              }`}
+              } ${esHoy ? "ring-2 ring-inset ring-brand-gray" : ""}`}
             >
               {dia}
             </button>
