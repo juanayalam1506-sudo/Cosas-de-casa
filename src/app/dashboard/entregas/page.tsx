@@ -1,6 +1,8 @@
 import { entregas, estadoStyles } from "@/lib/entregas";
 
 export default function EntregasPage() {
+  const conductores = Array.from(new Set(entregas.map((e) => e.conductor))).sort();
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -15,33 +17,53 @@ export default function EntregasPage() {
         </span>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-brand-gray/20 bg-white shadow-sm">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-brand-pink/10 text-black/60">
-            <tr>
-              <th className="px-4 py-3 font-medium">Cliente</th>
-              <th className="px-4 py-3 font-medium">Producto</th>
-              <th className="px-4 py-3 font-medium">Estado</th>
-              <th className="px-4 py-3 font-medium">Fecha</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-brand-gray/10">
-            {entregas.map((e) => (
-              <tr key={`${e.cliente}-${e.producto}`}>
-                <td className="px-4 py-3 text-black">{e.cliente}</td>
-                <td className="px-4 py-3 text-black/70">{e.producto}</td>
-                <td className="px-4 py-3">
-                  <span
-                    className={`rounded-full px-2 py-1 text-xs font-medium ${estadoStyles[e.estado]}`}
-                  >
-                    {e.estado}
-                  </span>
-                </td>
-                <td className="px-4 py-3 text-black/70">{e.fecha}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="mt-6 space-y-6">
+        {conductores.map((conductor) => {
+          const entregasConductor = entregas
+            .filter((e) => e.conductor === conductor)
+            .sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+          return (
+            <div
+              key={conductor}
+              className="overflow-hidden rounded-xl border border-brand-gray/20 bg-white shadow-sm"
+            >
+              <div className="flex items-center justify-between border-b border-brand-gray/10 bg-brand-gray/5 px-4 py-3">
+                <p className="text-sm font-semibold text-black">{conductor}</p>
+                <span className="text-xs text-black/50">
+                  {entregasConductor.length} entrega{entregasConductor.length === 1 ? "" : "s"}
+                </span>
+              </div>
+
+              <table className="w-full text-left text-sm">
+                <thead className="bg-brand-pink/10 text-black/60">
+                  <tr>
+                    <th className="px-4 py-3 font-medium">Cliente</th>
+                    <th className="px-4 py-3 font-medium">Producto</th>
+                    <th className="px-4 py-3 font-medium">Estado</th>
+                    <th className="px-4 py-3 font-medium">Fecha</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-brand-gray/10">
+                  {entregasConductor.map((e) => (
+                    <tr key={`${e.cliente}-${e.producto}`}>
+                      <td className="px-4 py-3 text-black">{e.cliente}</td>
+                      <td className="px-4 py-3 text-black/70">{e.producto}</td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`rounded-full px-2 py-1 text-xs font-medium ${estadoStyles[e.estado]}`}
+                        >
+                          {e.estado}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-black/70">{e.fecha}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export type Entrega = {
 
 export const estadoStyles: Record<Entrega["estado"], string> = {
   "En ruta": "bg-blue-100 text-blue-800",
-  Programada: "bg-brand-pink/25 text-black/70",
+  Programada: "bg-brand-pink text-white",
   Entregada: "bg-green-100 text-green-800",
 };
 
