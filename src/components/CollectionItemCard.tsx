@@ -1,9 +1,7 @@
 import ProductImagePlaceholder from "./ProductImagePlaceholder";
 import type { Producto } from "@/lib/productos";
 
-export default function ProductCard({ producto }: { producto: Producto }) {
-  const stockBajo = producto.stock <= 5;
-
+export default function CollectionItemCard({ producto }: { producto: Producto }) {
   return (
     <div className="overflow-hidden rounded-xl border border-brand-gray/20 bg-white shadow-sm">
       <ProductImagePlaceholder />
@@ -13,12 +11,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           <span className="text-xs text-black/40">{producto.coleccion}</span>
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
-        <div className="mt-2 flex items-center justify-between">
-          <span className="text-sm text-black/70">{producto.precio}</span>
-          <span className={stockBajo ? "text-xs font-medium text-red-600" : "text-xs font-medium text-black/50"}>
-            {stockBajo ? `Stock bajo (${producto.stock})` : `Stock: ${producto.stock}`}
-          </span>
-        </div>
+        <p className="mt-2 text-sm text-black/70">{producto.precio}</p>
       </div>
     </div>
   );
