@@ -14,6 +14,12 @@ export const estadoStyles: Record<Entrega["estado"], string> = {
   Entregada: "bg-green-100 text-green-800",
 };
 
+export const estadoDot: Record<Entrega["estado"], string> = {
+  "En ruta": "bg-blue-500",
+  Programada: "bg-brand-pink",
+  Entregada: "bg-green-500",
+};
+
 export const entregas: Entrega[] = [
   {
     cliente: "María Fernanda Ortiz",
