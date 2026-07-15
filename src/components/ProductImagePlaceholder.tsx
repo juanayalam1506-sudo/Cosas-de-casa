@@ -1,6 +1,8 @@
-export default function ProductImagePlaceholder() {
+export default function ProductImagePlaceholder({ coleccion }: { coleccion?: string }) {
+  const fondo = coleccion === "Colección Oslo" ? "bg-brand-gray/10" : "bg-brand-pink/10";
+
   return (
-    <div className="flex aspect-square items-center justify-center rounded-t-xl bg-brand-pink/10">
+    <div className={`flex aspect-square items-center justify-center rounded-t-xl ${fondo}`}>
       <svg
         viewBox="0 0 48 48"
         className="h-10 w-10 text-brand-gray/40"

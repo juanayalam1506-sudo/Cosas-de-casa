@@ -4,6 +4,7 @@ export type Producto = {
   subcategoria?: string;
   coleccion: string;
   stock: number;
+  stockObjetivo?: number;
   precio: string;
 };
 
@@ -35,7 +36,143 @@ export const subcategoriasPorCategoria: Record<string, string[]> = {
 
 export const colecciones = ["Todas", "Colección Victoria", "Colección Oslo"];
 
-export const productos: Producto[] = [];
+export const coleccionStyles: Record<string, string> = {
+  "Colección Victoria": "bg-brand-pink/20 text-black/70",
+  "Colección Oslo": "bg-brand-gray/15 text-black/70",
+};
+
+export function parsePrecio(precio: string): number {
+  return Number(precio.replace(/\D/g, "")) || 0;
+}
+
+export const productos: Producto[] = [
+  {
+    nombre: "Sofá Milán 3 puestos",
+    categoria: "Sofás",
+    coleccion: "Colección Victoria",
+    stock: 12,
+    stockObjetivo: 15,
+    precio: "$2.450.000",
+  },
+  {
+    nombre: "Sofá Nórdico 2 puestos",
+    categoria: "Sofás",
+    coleccion: "Colección Oslo",
+    stock: 3,
+    stockObjetivo: 10,
+    precio: "$1.980.000",
+  },
+  {
+    nombre: "Juego de Comedor 6 puestos",
+    categoria: "Comedor",
+    coleccion: "Colección Victoria",
+    stock: 3,
+    stockObjetivo: 6,
+    precio: "$3.200.000",
+  },
+  {
+    nombre: "Mesa de comedor Roble",
+    categoria: "Mesas",
+    subcategoria: "Mesas de comedor",
+    coleccion: "Colección Victoria",
+    stock: 4,
+    stockObjetivo: 8,
+    precio: "$1.890.000",
+  },
+  {
+    nombre: "Mesa de centro Nórdica",
+    categoria: "Mesas",
+    subcategoria: "Mesas de centro",
+    coleccion: "Colección Oslo",
+    stock: 9,
+    stockObjetivo: 12,
+    precio: "$780.000",
+  },
+  {
+    nombre: "Mesa de noche Roble",
+    categoria: "Mesas",
+    subcategoria: "Mesas de noche",
+    coleccion: "Colección Victoria",
+    stock: 18,
+    stockObjetivo: 20,
+    precio: "$420.000",
+  },
+  {
+    nombre: "Mesa auxiliar Redonda",
+    categoria: "Mesas",
+    subcategoria: "Mesas auxiliares",
+    coleccion: "Colección Oslo",
+    stock: 6,
+    stockObjetivo: 10,
+    precio: "$350.000",
+  },
+  {
+    nombre: "Cama Nórdica Queen",
+    categoria: "Camas",
+    coleccion: "Colección Oslo",
+    stock: 7,
+    stockObjetivo: 10,
+    precio: "$1.320.000",
+  },
+  {
+    nombre: "Cama Victoria King",
+    categoria: "Camas",
+    coleccion: "Colección Victoria",
+    stock: 2,
+    stockObjetivo: 6,
+    precio: "$2.100.000",
+  },
+  {
+    nombre: "Silla Escandinava",
+    categoria: "Sillas",
+    subcategoria: "Fijas",
+    coleccion: "Colección Oslo",
+    stock: 25,
+    stockObjetivo: 24,
+    precio: "$310.000",
+  },
+  {
+    nombre: "Mecedora Boho Rattan",
+    categoria: "Sillas",
+    subcategoria: "Mecedoras",
+    coleccion: "Colección Victoria",
+    stock: 8,
+    stockObjetivo: 10,
+    precio: "$890.000",
+  },
+  {
+    nombre: "Espejo Redondo Latón",
+    categoria: "Espejos",
+    coleccion: "Colección Victoria",
+    stock: 15,
+    stockObjetivo: 15,
+    precio: "$240.000",
+  },
+  {
+    nombre: "Espejo Ovalado Nórdico",
+    categoria: "Espejos",
+    coleccion: "Colección Oslo",
+    stock: 5,
+    stockObjetivo: 12,
+    precio: "$260.000",
+  },
+  {
+    nombre: "Cuadro Decorativo Trío",
+    categoria: "Decoración",
+    coleccion: "Colección Oslo",
+    stock: 10,
+    stockObjetivo: 15,
+    precio: "$180.000",
+  },
+  {
+    nombre: "Set de Cojines Boho",
+    categoria: "Cojines",
+    coleccion: "Colección Victoria",
+    stock: 30,
+    stockObjetivo: 25,
+    precio: "$95.000",
+  },
+];
 
 export const piezasCatalogo: PiezaCatalogo[] = [
   {
