@@ -29,6 +29,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           </span>
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
+        <p className="text-xs text-black/40">{producto.codigo}</p>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-sm text-black/70">{producto.precio}</span>
           <span className={stockBajo ? "text-xs font-medium text-red-600" : "text-xs font-medium text-black/50"}>

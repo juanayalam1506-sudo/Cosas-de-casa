@@ -7,6 +7,7 @@ export default function ProductTable({ productos }: { productos: Producto[] }) {
         <table className="w-full min-w-[720px] text-left text-sm">
           <thead className="bg-brand-pink/10 text-black/60">
             <tr>
+              <th className="px-4 py-3 font-medium">Código</th>
               <th className="px-4 py-3 font-medium">Producto</th>
               <th className="px-4 py-3 font-medium">Categoría</th>
               <th className="px-4 py-3 font-medium">Colección</th>
@@ -19,7 +20,8 @@ export default function ProductTable({ productos }: { productos: Producto[] }) {
               const stockBajo = p.stock <= 5;
 
               return (
-                <tr key={p.nombre}>
+                <tr key={p.codigo}>
+                  <td className="px-4 py-3 text-black/50">{p.codigo}</td>
                   <td className="px-4 py-3 text-black">{p.nombre}</td>
                   <td className="px-4 py-3 text-black/70">
                     {p.subcategoria ? `${p.categoria} · ${p.subcategoria}` : p.categoria}

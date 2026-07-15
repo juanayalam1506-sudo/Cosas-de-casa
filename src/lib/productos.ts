@@ -1,4 +1,5 @@
 export type Producto = {
+  codigo: string;
   nombre: string;
   categoria: string;
   subcategoria?: string;
@@ -47,6 +48,7 @@ export function parsePrecio(precio: string): number {
 
 export const productos: Producto[] = [
   {
+    codigo: "SOF-001",
     nombre: "Sofá Milán 3 puestos",
     categoria: "Sofás",
     coleccion: "Colección Victoria",
@@ -55,6 +57,7 @@ export const productos: Producto[] = [
     precio: "$2.450.000",
   },
   {
+    codigo: "SOF-002",
     nombre: "Sofá Nórdico 2 puestos",
     categoria: "Sofás",
     coleccion: "Colección Oslo",
@@ -63,6 +66,7 @@ export const productos: Producto[] = [
     precio: "$1.980.000",
   },
   {
+    codigo: "COM-001",
     nombre: "Juego de Comedor 6 puestos",
     categoria: "Comedor",
     coleccion: "Colección Victoria",
@@ -71,6 +75,7 @@ export const productos: Producto[] = [
     precio: "$3.200.000",
   },
   {
+    codigo: "MES-001",
     nombre: "Mesa de comedor Roble",
     categoria: "Mesas",
     subcategoria: "Mesas de comedor",
@@ -80,6 +85,7 @@ export const productos: Producto[] = [
     precio: "$1.890.000",
   },
   {
+    codigo: "MES-002",
     nombre: "Mesa de centro Nórdica",
     categoria: "Mesas",
     subcategoria: "Mesas de centro",
@@ -89,6 +95,7 @@ export const productos: Producto[] = [
     precio: "$780.000",
   },
   {
+    codigo: "MES-003",
     nombre: "Mesa de noche Roble",
     categoria: "Mesas",
     subcategoria: "Mesas de noche",
@@ -98,6 +105,7 @@ export const productos: Producto[] = [
     precio: "$420.000",
   },
   {
+    codigo: "MES-004",
     nombre: "Mesa auxiliar Redonda",
     categoria: "Mesas",
     subcategoria: "Mesas auxiliares",
@@ -107,6 +115,7 @@ export const productos: Producto[] = [
     precio: "$350.000",
   },
   {
+    codigo: "CAM-001",
     nombre: "Cama Nórdica Queen",
     categoria: "Camas",
     coleccion: "Colección Oslo",
@@ -115,6 +124,7 @@ export const productos: Producto[] = [
     precio: "$1.320.000",
   },
   {
+    codigo: "CAM-002",
     nombre: "Cama Victoria King",
     categoria: "Camas",
     coleccion: "Colección Victoria",
@@ -123,6 +133,7 @@ export const productos: Producto[] = [
     precio: "$2.100.000",
   },
   {
+    codigo: "SIL-001",
     nombre: "Silla Escandinava",
     categoria: "Sillas",
     subcategoria: "Fijas",
@@ -132,6 +143,7 @@ export const productos: Producto[] = [
     precio: "$310.000",
   },
   {
+    codigo: "SIL-002",
     nombre: "Mecedora Boho Rattan",
     categoria: "Sillas",
     subcategoria: "Mecedoras",
@@ -141,6 +153,7 @@ export const productos: Producto[] = [
     precio: "$890.000",
   },
   {
+    codigo: "ESP-001",
     nombre: "Espejo Redondo Latón",
     categoria: "Espejos",
     coleccion: "Colección Victoria",
@@ -149,6 +162,7 @@ export const productos: Producto[] = [
     precio: "$240.000",
   },
   {
+    codigo: "ESP-002",
     nombre: "Espejo Ovalado Nórdico",
     categoria: "Espejos",
     coleccion: "Colección Oslo",
@@ -157,6 +171,7 @@ export const productos: Producto[] = [
     precio: "$260.000",
   },
   {
+    codigo: "DEC-001",
     nombre: "Cuadro Decorativo Trío",
     categoria: "Decoración",
     coleccion: "Colección Oslo",
@@ -165,6 +180,7 @@ export const productos: Producto[] = [
     precio: "$180.000",
   },
   {
+    codigo: "COJ-001",
     nombre: "Set de Cojines Boho",
     categoria: "Cojines",
     coleccion: "Colección Victoria",

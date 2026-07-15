@@ -37,7 +37,10 @@ export default function InventarioPage() {
     const filtrados = productos.filter((p) => {
       if (categoria !== "Todos" && p.categoria !== categoria) return false;
       if (subcategoriasDisponibles && subcategoria !== "Todas" && p.subcategoria !== subcategoria) return false;
-      if (busqueda.trim() && !p.nombre.toLowerCase().includes(busqueda.trim().toLowerCase())) return false;
+      const termino = busqueda.trim().toLowerCase();
+      if (termino && !p.nombre.toLowerCase().includes(termino) && !p.codigo.toLowerCase().includes(termino)) {
+        return false;
+      }
       return true;
     });
 
@@ -92,7 +95,7 @@ export default function InventarioPage() {
             type="search"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            placeholder="Buscar por nombre..."
+            placeholder="Buscar por nombre o código..."
             className="w-full max-w-xs rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
           />
 

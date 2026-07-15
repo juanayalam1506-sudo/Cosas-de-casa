@@ -13,6 +13,7 @@ export default function NewProductForm({
   onSubmit: (producto: Producto) => void;
   onCancel: () => void;
 }) {
+  const [codigo, setCodigo] = useState("");
   const [nombre, setNombre] = useState("");
   const [categoria, setCategoria] = useState(categoriasSeleccionables[0]);
   const [subcategoria, setSubcategoria] = useState("");
@@ -30,9 +31,10 @@ export default function NewProductForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!nombre.trim() || !precio.trim() || !stock.trim()) return;
+    if (!codigo.trim() || !nombre.trim() || !precio.trim() || !stock.trim()) return;
 
     onSubmit({
+      codigo: codigo.trim(),
       nombre: nombre.trim(),
       categoria,
       subcategoria: subcategoria || undefined,
@@ -45,6 +47,20 @@ export default function NewProductForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label htmlFor="codigo" className="mb-1 block text-sm font-medium text-black/70">
+          Código
+        </label>
+        <input
+          id="codigo"
+          value={codigo}
+          onChange={(e) => setCodigo(e.target.value)}
+          placeholder="Ej. SOF-003"
+          required
+          className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+        />
+      </div>
+
       <div>
         <label htmlFor="nombre" className="mb-1 block text-sm font-medium text-black/70">
           Nombre
