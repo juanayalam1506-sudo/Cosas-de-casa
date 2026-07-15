@@ -5,6 +5,7 @@ export type Entrega = {
   conductor: string;
   estado: "Programada" | "En ruta" | "Entregada";
   fecha: string;
+  observacion?: string;
 };
 
 export const estadoStyles: Record<Entrega["estado"], string> = {
@@ -21,6 +22,7 @@ export const entregas: Entrega[] = [
     conductor: "Andrés Ruiz",
     estado: "En ruta",
     fecha: "2026-07-16",
+    observacion: "Edificio con portería; anunciarse como entrega de Cosas de Casa.",
   },
   {
     cliente: "Carlos Andrés Peña",
@@ -29,6 +31,7 @@ export const entregas: Entrega[] = [
     conductor: "Andrés Ruiz",
     estado: "Programada",
     fecha: "2026-07-18",
+    observacion: "Cliente pidió llamar 30 minutos antes de llegar.",
   },
   {
     cliente: "Laura Gómez",
@@ -45,5 +48,6 @@ export const entregas: Entrega[] = [
     conductor: "Andrés Ruiz",
     estado: "Programada",
     fecha: "2026-07-19",
+    observacion: "Producto frágil (rattan): manejar con cuidado al bajarlo del camión.",
   },
 ];

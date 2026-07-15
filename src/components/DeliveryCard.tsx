@@ -12,6 +12,11 @@ export default function DeliveryCard({ entrega }: { entrega: Entrega }) {
       <p className="mt-1 text-sm text-black/70">{entrega.cliente}</p>
       <p className="mt-2 text-xs text-black/50">{entrega.direccion}</p>
       <p className="mt-1 text-xs text-black/40">{entrega.fecha}</p>
+      {entrega.observacion && (
+        <p className="mt-3 rounded-lg bg-brand-pink/10 px-3 py-2 text-xs text-black/70">
+          <span className="font-medium">Observación:</span> {entrega.observacion}
+        </p>
+      )}
     </div>
   );
 }
