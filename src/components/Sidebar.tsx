@@ -3,12 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const links = [
-  { href: "/dashboard/inventario", label: "Inventario" },
-  { href: "/dashboard/catalogo", label: "Catálogo" },
-  { href: "/dashboard/clientes", label: "Clientes" },
-  { href: "/dashboard/entregas", label: "Entregas" },
-];
+// Catálogo, Clientes y Entregas quedan suspendidas del menú mientras nos
+// centramos en dejar Inventario listo para la empresa.
+const links = [{ href: "/dashboard/inventario", label: "Inventario" }];
 
 export default function Sidebar() {
   const pathname = usePathname();
