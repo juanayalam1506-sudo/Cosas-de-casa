@@ -7,9 +7,11 @@ import CategoryFilter from "@/components/CategoryFilter";
 import Modal from "@/components/Modal";
 import NewCatalogItemForm from "@/components/NewCatalogItemForm";
 import {
+  categorias,
   colecciones,
   productos,
   piezasCatalogo as piezasCatalogoIniciales,
+  subcategoriasPorCategoria,
   type PiezaCatalogo,
 } from "@/lib/productos";
 
@@ -18,11 +20,31 @@ export default function CatalogoPage() {
   const [coleccionActiva, setColeccionActiva] = useState("Todas");
   const [piezasCatalogo, setPiezasCatalogo] = useState(piezasCatalogoIniciales);
   const [formAbierto, setFormAbierto] = useState(false);
+  const [categoriaPersonalizable, setCategoriaPersonalizable] = useState("Todos");
+  const [subcategoriaPersonalizable, setSubcategoriaPersonalizable] = useState("Todas");
 
   const productosFiltrados =
     coleccionActiva === "Todas"
       ? productos
       : productos.filter((p) => p.coleccion === coleccionActiva);
+
+  const subcategoriasDisponibles = subcategoriasPorCategoria[categoriaPersonalizable];
+
+  const handleCategoriaPersonalizableChange = (nuevaCategoria: string) => {
+    setCategoriaPersonalizable(nuevaCategoria);
+    setSubcategoriaPersonalizable("Todas");
+  };
+
+  const piezasFiltradas = piezasCatalogo.filter((p) => {
+    if (categoriaPersonalizable !== "Todos" && p.categoria !== categoriaPersonalizable) return false;
+    if (
+      subcategoriasDisponibles &&
+      subcategoriaPersonalizable !== "Todas" &&
+      p.subcategoria !== subcategoriaPersonalizable
+    )
+      return false;
+    return true;
+  });
 
   const agregarPieza = (pieza: Omit<PiezaCatalogo, "id">) => {
     setPiezasCatalogo((actual) => [...actual, { ...pieza, id: crypto.randomUUID() }]);
@@ -81,10 +103,25 @@ export default function CatalogoPage() {
           </div>
         </div>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {piezasCatalogo.map((pieza) => (
-            <CatalogItemCard key={pieza.id} pieza={pieza} />
-          ))}
+        <div className="mt-6 space-y-3">
+          <CategoryFilter
+            categorias={categorias}
+            activa={categoriaPersonalizable}
+            onChange={handleCategoriaPersonalizableChange}
+          />
+          {subcategoriasDisponibles && (
+            <CategoryFilter
+              categorias={["Todas", ...subcategoriasDisponibles]}
+              activa={subcategoriaPersonalizable}
+              onChange={setSubcategoriaPersonalizable}
+            />
+          )}
+
+          <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {piezasFiltradas.map((pieza) => (
+              <CatalogItemCard key={pieza.id} pieza={pieza} />
+            ))}
+          </div>
         </div>
       )}
 
