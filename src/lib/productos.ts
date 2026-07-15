@@ -7,6 +7,7 @@ export type Producto = {
 };
 
 export type PiezaCatalogo = {
+  id: string;
   nombre: string;
   categoria: string;
   descripcion: string;
@@ -28,24 +29,28 @@ export const productos: Producto[] = [
 
 export const piezasCatalogo: PiezaCatalogo[] = [
   {
+    id: "mecedora-a-medida",
     nombre: "Mecedora a medida",
     categoria: "Mecedoras",
     descripcion: "Elige el tipo de madera, tapizado y color.",
     desde: "$750.000",
   },
   {
+    id: "sofa-modular-personalizado",
     nombre: "Sofá modular personalizado",
     categoria: "Sala",
     descripcion: "Configura tamaño, tela y color a tu gusto.",
     desde: "$2.200.000",
   },
   {
+    id: "mesa-comedor-a-medida",
     nombre: "Mesa de comedor a medida",
     categoria: "Comedor",
     descripcion: "Elige madera, forma y medidas especiales.",
     desde: "$1.500.000",
   },
   {
+    id: "restauracion-y-tapizado",
     nombre: "Restauración y tapizado",
     categoria: "Decoración",
     descripcion: "Dale una segunda vida a un mueble que ya tienes.",
