@@ -14,10 +14,10 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex w-60 shrink-0 flex-col bg-stone-900 text-stone-100">
+    <aside className="flex w-60 shrink-0 flex-col bg-brand-gray text-white">
       <div className="px-5 py-6">
         <p className="text-lg font-semibold">Cosas de Casa</p>
-        <p className="text-xs text-stone-400">Panel interno</p>
+        <p className="text-xs text-white/60">Panel interno</p>
       </div>
 
       <nav className="flex-1 space-y-1 px-3">
@@ -33,8 +33,8 @@ export default function Sidebar() {
               href={link.href}
               className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                 active
-                  ? "bg-amber-700 text-white"
-                  : "text-stone-300 hover:bg-stone-800 hover:text-white"
+                  ? "bg-brand-pink text-white"
+                  : "text-white/70 hover:bg-white/10 hover:text-white"
               }`}
             >
               {link.label}
@@ -43,8 +43,8 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="border-t border-stone-800 px-5 py-4">
-        <p className="text-xs text-stone-500">Sesión de ejemplo</p>
+      <div className="border-t border-white/15 px-5 py-4">
+        <p className="text-xs text-white/50">Sesión de ejemplo</p>
       </div>
     </aside>
   );

@@ -3,8 +3,8 @@ import StatCard from "@/components/StatCard";
 export default function DashboardPage() {
   return (
     <div>
-      <h1 className="text-xl font-semibold text-stone-900">Resumen</h1>
-      <p className="mt-1 text-sm text-stone-500">
+      <h1 className="text-xl font-semibold text-black">Resumen</h1>
+      <p className="mt-1 text-sm text-black/50">
         Datos de ejemplo — todavía sin conectar a la base de datos.
       </p>
 

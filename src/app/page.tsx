@@ -3,13 +3,13 @@ export default function LoginPage() {
     <main className="flex flex-1 items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-semibold text-stone-900">Cosas de Casa</h1>
-          <p className="mt-1 text-sm text-stone-500">Panel interno</p>
+          <h1 className="text-2xl font-semibold text-black">Cosas de Casa</h1>
+          <p className="mt-1 text-sm text-black/50">Panel interno</p>
         </div>
 
-        <form className="space-y-4 rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+        <form className="space-y-4 rounded-xl border border-brand-pink/40 bg-white p-6 shadow-sm">
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm font-medium text-stone-700">
+            <label htmlFor="email" className="mb-1 block text-sm font-medium text-black">
               Correo
             </label>
             <input
@@ -17,12 +17,12 @@ export default function LoginPage() {
               type="email"
               autoComplete="email"
               placeholder="nombre@cosasdecasa.com"
-              className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:border-amber-600 focus:outline-none focus:ring-1 focus:ring-amber-600"
+              className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1 block text-sm font-medium text-stone-700">
+            <label htmlFor="password" className="mb-1 block text-sm font-medium text-black">
               Contraseña
             </label>
             <input
@@ -30,19 +30,19 @@ export default function LoginPage() {
               type="password"
               autoComplete="current-password"
               placeholder="••••••••"
-              className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:border-amber-600 focus:outline-none focus:ring-1 focus:ring-amber-600"
+              className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
             />
           </div>
 
           <button
             type="submit"
             disabled
-            className="w-full cursor-not-allowed rounded-lg bg-amber-700/50 px-4 py-2 text-sm font-medium text-white"
+            className="w-full cursor-not-allowed rounded-lg bg-brand-pink/60 px-4 py-2 text-sm font-medium text-white"
           >
             Iniciar sesión
           </button>
 
-          <p className="text-center text-xs text-stone-400">
+          <p className="text-center text-xs text-black/45">
             Acceso solo por invitación. El inicio de sesión se conectará próximamente.
           </p>
         </form>
