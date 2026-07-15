@@ -7,7 +7,9 @@ export default function CollectionItemCard({ producto }: { producto: Producto })
       <ProductImagePlaceholder />
       <div className="p-4">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-xs font-medium text-brand-pink">{producto.categoria}</span>
+          <span className="text-xs font-medium text-brand-pink">
+            {producto.subcategoria ? `${producto.categoria} · ${producto.subcategoria}` : producto.categoria}
+          </span>
           <span className="text-xs text-black/40">{producto.coleccion}</span>
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>

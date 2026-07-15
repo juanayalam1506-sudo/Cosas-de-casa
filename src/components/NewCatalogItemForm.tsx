@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { categorias, type PiezaCatalogo } from "@/lib/productos";
+import { categorias, subcategoriasPorCategoria, type PiezaCatalogo } from "@/lib/productos";
 
 const categoriasSeleccionables = categorias.filter((c) => c !== "Todos");
 
@@ -14,13 +14,27 @@ export default function NewCatalogItemForm({
 }) {
   const [nombre, setNombre] = useState("");
   const [categoria, setCategoria] = useState(categoriasSeleccionables[0]);
+  const [subcategoria, setSubcategoria] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [desde, setDesde] = useState("");
+
+  const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
+
+  const handleCategoriaChange = (nuevaCategoria: string) => {
+    setCategoria(nuevaCategoria);
+    setSubcategoria("");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!nombre.trim() || !desde.trim()) return;
-    onSubmit({ nombre: nombre.trim(), categoria, descripcion: descripcion.trim(), desde: desde.trim() });
+    onSubmit({
+      nombre: nombre.trim(),
+      categoria,
+      subcategoria: subcategoria || undefined,
+      descripcion: descripcion.trim(),
+      desde: desde.trim(),
+    });
   };
 
   return (
@@ -46,7 +60,7 @@ export default function NewCatalogItemForm({
         <select
           id="categoria"
           value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
+          onChange={(e) => handleCategoriaChange(e.target.value)}
           className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
         >
           {categoriasSeleccionables.map((c) => (
@@ -56,6 +70,27 @@ export default function NewCatalogItemForm({
           ))}
         </select>
       </div>
+
+      {subcategoriasDisponibles && (
+        <div>
+          <label htmlFor="subcategoria" className="mb-1 block text-sm font-medium text-black/70">
+            Subcategoría
+          </label>
+          <select
+            id="subcategoria"
+            value={subcategoria}
+            onChange={(e) => setSubcategoria(e.target.value)}
+            className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+          >
+            <option value="">Sin especificar</option>
+            {subcategoriasDisponibles.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div>
         <label htmlFor="descripcion" className="mb-1 block text-sm font-medium text-black/70">

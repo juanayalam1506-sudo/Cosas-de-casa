@@ -3,13 +3,24 @@
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import CategoryFilter from "@/components/CategoryFilter";
-import { categorias, productos } from "@/lib/productos";
+import { categorias, productos, subcategoriasPorCategoria } from "@/lib/productos";
 
 export default function InventarioPage() {
   const [categoria, setCategoria] = useState("Todos");
+  const [subcategoria, setSubcategoria] = useState("Todas");
 
-  const productosFiltrados =
-    categoria === "Todos" ? productos : productos.filter((p) => p.categoria === categoria);
+  const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
+
+  const handleCategoriaChange = (nuevaCategoria: string) => {
+    setCategoria(nuevaCategoria);
+    setSubcategoria("Todas");
+  };
+
+  const productosFiltrados = productos.filter((p) => {
+    if (categoria !== "Todos" && p.categoria !== categoria) return false;
+    if (subcategoriasDisponibles && subcategoria !== "Todas" && p.subcategoria !== subcategoria) return false;
+    return true;
+  });
 
   return (
     <div>
@@ -26,9 +37,17 @@ export default function InventarioPage() {
         </span>
       </div>
 
-      <div className="mt-6">
-        <CategoryFilter categorias={categorias} activa={categoria} onChange={setCategoria} />
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-6 space-y-3">
+        <CategoryFilter categorias={categorias} activa={categoria} onChange={handleCategoriaChange} />
+        {subcategoriasDisponibles && (
+          <CategoryFilter
+            categorias={["Todas", ...subcategoriasDisponibles]}
+            activa={subcategoria}
+            onChange={setSubcategoria}
+          />
+        )}
+
+        <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {productosFiltrados.map((p) => (
             <ProductCard key={p.nombre} producto={p} />
           ))}

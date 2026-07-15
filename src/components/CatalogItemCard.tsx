@@ -7,7 +7,9 @@ export default function CatalogItemCard({ pieza }: { pieza: PiezaCatalogo }) {
       <ProductImagePlaceholder />
       <div className="p-4">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-xs font-medium text-brand-pink">{pieza.categoria}</span>
+          <span className="text-xs font-medium text-brand-pink">
+            {pieza.subcategoria ? `${pieza.categoria} · ${pieza.subcategoria}` : pieza.categoria}
+          </span>
           <span className="shrink-0 rounded-full bg-brand-gray/10 px-2 py-1 text-xs font-medium text-black/60">
             Personalizable
           </span>
