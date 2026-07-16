@@ -29,34 +29,6 @@ const opcionesOrden: { value: Orden; label: string }[] = [
   { value: "stock-desc", label: "Stock: mayor a menor" },
 ];
 
-function productosACSV(productos: Producto[]): string {
-  const columnas = [
-    "Código",
-    "Nombre",
-    "Categoría",
-    "Subcategoría",
-    "Colección",
-    "Estado",
-    "Stock",
-    "Stock objetivo",
-    "Precio",
-  ];
-  const filas = productos.map((p) => [
-    p.codigo,
-    p.nombre,
-    p.categoria,
-    p.subcategoria ?? "",
-    p.coleccion,
-    p.estado ?? "Activo",
-    String(p.stock),
-    p.stockObjetivo !== undefined ? String(p.stockObjetivo) : "",
-    p.precio,
-  ]);
-  return [columnas, ...filas]
-    .map((fila) => fila.map((valor) => `"${valor.replace(/"/g, '""')}"`).join(","))
-    .join("\n");
-}
-
 export default function InventarioPage() {
   const [productos, setProductos] = useState<Producto[]>(productosIniciales);
   const [movimientos, setMovimientos] = useState<MovimientoStock[]>([]);
@@ -139,17 +111,6 @@ export default function InventarioPage() {
     ]);
   };
 
-  const exportarCSV = () => {
-    const csv = productosACSV(productosFiltrados);
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const enlace = document.createElement("a");
-    enlace.href = url;
-    enlace.download = "inventario.csv";
-    enlace.click();
-    URL.revokeObjectURL(url);
-  };
-
   const historialDelProducto = historialProducto
     ? movimientos.filter((m) => m.codigo === historialProducto.codigo)
     : [];
@@ -159,13 +120,6 @@ export default function InventarioPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold text-black">Inventario</h1>
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={exportarCSV}
-            className="rounded-lg border border-brand-gray/30 px-3 py-1.5 text-sm font-medium text-black/70 hover:bg-brand-pink/10"
-          >
-            Exportar CSV
-          </button>
           <button
             type="button"
             onClick={() => setFormAbierto(true)}
