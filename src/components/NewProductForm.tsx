@@ -28,7 +28,7 @@ export default function NewProductForm({
   const [nombre, setNombre] = useState("");
   const [categoria, setCategoria] = useState(categoriasSeleccionables[0]);
   const [subcategoria, setSubcategoria] = useState("");
-  const [coleccion, setColeccion] = useState(coleccionesSeleccionables[0]);
+  const [coleccion] = useState(coleccionesSeleccionables[0]);
   const [stock, setStock] = useState("");
   const [stockObjetivo, setStockObjetivo] = useState("");
   const [precio, setPrecio] = useState("");
@@ -146,24 +146,6 @@ export default function NewProductForm({
       )}
 
       {campos.patron && <PatronInput valores={patrones} onChange={setPatrones} />}
-
-      <div>
-        <label htmlFor="coleccion" className="mb-1 block text-sm font-medium text-black/70">
-          Colección
-        </label>
-        <select
-          id="coleccion"
-          value={coleccion}
-          onChange={(e) => setColeccion(e.target.value)}
-          className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
-        >
-          {coleccionesSeleccionables.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-      </div>
 
       <div className="grid grid-cols-2 gap-3">
         <div>

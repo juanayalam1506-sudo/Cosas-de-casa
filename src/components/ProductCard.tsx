@@ -1,7 +1,6 @@
 import ProductImagePlaceholder from "./ProductImagePlaceholder";
 import VariantesDisplay from "./VariantesDisplay";
 import {
-  coleccionStyles,
   estadoProductoStyles,
   estadosProducto,
   tieneVariantes,
@@ -51,13 +50,6 @@ export default function ProductCard({
                 </option>
               ))}
             </select>
-            <span
-              className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
-                coleccionStyles[producto.coleccion] ?? "bg-brand-gray/15 text-black/70"
-              }`}
-            >
-              {producto.coleccion}
-            </span>
           </div>
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
