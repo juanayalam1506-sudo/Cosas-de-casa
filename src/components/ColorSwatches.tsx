@@ -5,14 +5,25 @@ export default function ColorSwatches({ variantes }: { variantes?: Variante[] })
 
   return (
     <div className="flex items-center gap-1">
-      {variantes.map((v) => (
-        <span
-          key={v.nombre}
-          title={v.nombre}
-          className="h-4 w-4 shrink-0 rounded-full border border-black/15"
-          style={{ backgroundColor: v.color }}
-        />
-      ))}
+      {variantes.map((v) =>
+        v.foto ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={v.nombre}
+            src={v.foto}
+            alt={v.nombre}
+            title={v.nombre}
+            className="h-4 w-4 shrink-0 rounded-full border border-black/15 object-cover"
+          />
+        ) : (
+          <span
+            key={v.nombre}
+            title={v.nombre}
+            className="h-4 w-4 shrink-0 rounded-full border border-black/15"
+            style={{ backgroundColor: v.color }}
+          />
+        ),
+      )}
     </div>
   );
 }

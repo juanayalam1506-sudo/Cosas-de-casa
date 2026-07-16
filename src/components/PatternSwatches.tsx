@@ -30,14 +30,25 @@ export default function PatternSwatches({ patrones }: { patrones?: PatronVariant
 
   return (
     <div className="flex items-center gap-1">
-      {patrones.map((p) => (
-        <span
-          key={p.nombre}
-          title={p.nombre}
-          className="h-4 w-4 shrink-0 rounded-full border border-black/15"
-          style={estiloPatron(p)}
-        />
-      ))}
+      {patrones.map((p) =>
+        p.foto ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={p.nombre}
+            src={p.foto}
+            alt={p.nombre}
+            title={p.nombre}
+            className="h-4 w-4 shrink-0 rounded-full border border-black/15 object-cover"
+          />
+        ) : (
+          <span
+            key={p.nombre}
+            title={p.nombre}
+            className="h-4 w-4 shrink-0 rounded-full border border-black/15"
+            style={estiloPatron(p)}
+          />
+        ),
+      )}
     </div>
   );
 }

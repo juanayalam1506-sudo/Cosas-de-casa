@@ -3,6 +3,7 @@ export type EstadoProducto = "Activo" | "Descontinuado" | "En producción";
 export type Variante = {
   nombre: string;
   color: string;
+  foto?: string;
 };
 
 export type TipoPatron = "rayas" | "cuadros" | "lunares";
@@ -11,6 +12,7 @@ export type PatronVariante = {
   nombre: string;
   tipo: TipoPatron;
   colores: [string, string];
+  foto?: string;
 };
 
 export type Producto = {
