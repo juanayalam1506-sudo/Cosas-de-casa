@@ -148,10 +148,7 @@ export default function InventarioPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold text-black">Inventario</h1>
-          <p className="mt-1 text-sm text-black/50">Stock de lo que se vende regularmente.</p>
-        </div>
+        <h1 className="text-xl font-semibold text-black">Inventario</h1>
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -170,62 +167,77 @@ export default function InventarioPage() {
         </div>
       </div>
 
+      <div className="relative mt-4">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-black/30"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <input
+          type="search"
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          placeholder="Buscar por nombre o código..."
+          className="w-full rounded-full border border-brand-gray/20 bg-white py-3 pr-4 pl-11 text-sm text-black shadow-sm placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-2 focus:ring-brand-pink/30"
+        />
+      </div>
+
       <InventorySummary productos={productos} />
 
       <div className="mt-6 space-y-3">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <input
-            type="search"
-            value={busqueda}
-            onChange={(e) => setBusqueda(e.target.value)}
-            placeholder="Buscar por nombre o código..."
-            className="w-full max-w-xs rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
-          />
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          <button
+            type="button"
+            onClick={() => setSoloReabastecer((v) => !v)}
+            className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium shadow-sm transition-colors ${
+              soloReabastecer
+                ? "border-brand-pink bg-brand-pink/10 text-brand-pink"
+                : "border-brand-gray/20 bg-white text-black/60 hover:bg-brand-pink/5"
+            }`}
+          >
+            <span className={`h-2 w-2 rounded-full ${soloReabastecer ? "bg-brand-pink" : "bg-black/20"}`} />
+            Por reabastecer
+          </button>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <label className="flex items-center gap-2 rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black/70">
-              <input
-                type="checkbox"
-                checked={soloReabastecer}
-                onChange={(e) => setSoloReabastecer(e.target.checked)}
-                className="accent-brand-pink"
-              />
-              Solo por reabastecer
-            </label>
+          <select
+            value={orden}
+            onChange={(e) => setOrden(e.target.value as Orden)}
+            disabled={soloReabastecer}
+            className="rounded-full border border-brand-gray/20 bg-white px-4 py-2 text-sm text-black shadow-sm focus:border-brand-pink focus:outline-none focus:ring-2 focus:ring-brand-pink/30 disabled:opacity-40"
+          >
+            <option value="nombre">Nombre (A-Z)</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="stock-asc">Stock: menor a mayor</option>
+            <option value="stock-desc">Stock: mayor a menor</option>
+          </select>
 
-            <select
-              value={orden}
-              onChange={(e) => setOrden(e.target.value as Orden)}
-              disabled={soloReabastecer}
-              className="rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink disabled:opacity-40"
+          <div className="flex rounded-full border border-brand-gray/20 bg-white p-1 shadow-sm">
+            <button
+              type="button"
+              onClick={() => setVista("tarjetas")}
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+                vista === "tarjetas" ? "bg-brand-gray text-white" : "text-black/60 hover:bg-brand-pink/10"
+              }`}
             >
-              <option value="nombre">Nombre (A-Z)</option>
-              <option value="precio-asc">Precio: menor a mayor</option>
-              <option value="precio-desc">Precio: mayor a menor</option>
-              <option value="stock-asc">Stock: menor a mayor</option>
-              <option value="stock-desc">Stock: mayor a menor</option>
-            </select>
-
-            <div className="flex rounded-lg border border-brand-gray/30 p-0.5">
-              <button
-                type="button"
-                onClick={() => setVista("tarjetas")}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                  vista === "tarjetas" ? "bg-brand-gray text-white" : "text-black/60 hover:bg-brand-pink/10"
-                }`}
-              >
-                Tarjetas
-              </button>
-              <button
-                type="button"
-                onClick={() => setVista("tabla")}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                  vista === "tabla" ? "bg-brand-gray text-white" : "text-black/60 hover:bg-brand-pink/10"
-                }`}
-              >
-                Tabla
-              </button>
-            </div>
+              Tarjetas
+            </button>
+            <button
+              type="button"
+              onClick={() => setVista("tabla")}
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+                vista === "tabla" ? "bg-brand-gray text-white" : "text-black/60 hover:bg-brand-pink/10"
+              }`}
+            >
+              Tabla
+            </button>
           </div>
         </div>
 
