@@ -26,8 +26,8 @@ export default function Modal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-      <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-lg">
-        <div className="flex items-center justify-between">
+      <div className="flex max-h-[85vh] w-full max-w-md flex-col rounded-xl bg-white p-6 shadow-lg">
+        <div className="flex shrink-0 items-center justify-between">
           <h2 className="text-lg font-semibold text-black">{title}</h2>
           <button
             type="button"
@@ -38,7 +38,7 @@ export default function Modal({
             ✕
           </button>
         </div>
-        <div className="mt-4">{children}</div>
+        <div className="mt-4 overflow-y-auto">{children}</div>
       </div>
     </div>
   );

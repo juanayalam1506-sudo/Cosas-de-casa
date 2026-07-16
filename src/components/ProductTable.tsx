@@ -1,14 +1,22 @@
 import VariantesDisplay from "./VariantesDisplay";
-import { coleccionStyles, estadoProductoStyles, type Producto } from "@/lib/productos";
+import {
+  coleccionStyles,
+  estadoProductoStyles,
+  estadosProducto,
+  type EstadoProducto,
+  type Producto,
+} from "@/lib/productos";
 
 export default function ProductTable({
   productos,
   onAjustarStock,
   onVerHistorial,
+  onCambiarEstado,
 }: {
   productos: Producto[];
   onAjustarStock: (producto: Producto, delta: number) => void;
   onVerHistorial: (producto: Producto) => void;
+  onCambiarEstado: (producto: Producto, estado: EstadoProducto) => void;
 }) {
   return (
     <div className="overflow-hidden rounded-xl border border-brand-gray/20 bg-white shadow-sm">
@@ -52,9 +60,17 @@ export default function ProductTable({
                     <VariantesDisplay producto={p} />
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`rounded-full px-2 py-1 text-xs font-medium ${estadoProductoStyles[estado]}`}>
-                      {estado}
-                    </span>
+                    <select
+                      value={estado}
+                      onChange={(e) => onCambiarEstado(p, e.target.value as EstadoProducto)}
+                      className={`cursor-pointer rounded-full border-0 px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-brand-pink ${estadoProductoStyles[estado]}`}
+                    >
+                      {estadosProducto.map((e) => (
+                        <option key={e} value={e}>
+                          {e}
+                        </option>
+                      ))}
+                    </select>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1">

@@ -1,4 +1,4 @@
-export type EstadoProducto = "Activo" | "Descontinuado" | "En tránsito";
+export type EstadoProducto = "Activo" | "Descontinuado" | "En producción";
 
 export type Variante = {
   nombre: string;
@@ -68,6 +68,20 @@ export const subcategoriasPorCategoria: Record<string, string[]> = {
   Mesas: ["Mesas de centro", "Mesas de noche", "Mesas de comedor", "Mesas auxiliares"],
 };
 
+export function camposVariantePorCategoria(categoria: string): {
+  madera: boolean;
+  tela: boolean;
+  patron: boolean;
+} {
+  if (categoria === "Sofás" || categoria === "Sillas") return { madera: true, tela: true, patron: false };
+  if (["Camas", "Espejos", "Mesas", "Comedor"].includes(categoria)) {
+    return { madera: true, tela: false, patron: false };
+  }
+  if (categoria === "Cortinas") return { madera: false, tela: true, patron: false };
+  if (categoria === "Cojines" || categoria === "Tapetes") return { madera: false, tela: false, patron: true };
+  return { madera: false, tela: false, patron: false };
+}
+
 export const colecciones = ["Todas", "Colección Victoria", "Colección Oslo"];
 
 export const coleccionStyles: Record<string, string> = {
@@ -75,12 +89,12 @@ export const coleccionStyles: Record<string, string> = {
   "Colección Oslo": "bg-brand-gray/15 text-black/70",
 };
 
-export const estadosProducto: EstadoProducto[] = ["Activo", "Descontinuado", "En tránsito"];
+export const estadosProducto: EstadoProducto[] = ["Activo", "Descontinuado", "En producción"];
 
 export const estadoProductoStyles: Record<EstadoProducto, string> = {
   Activo: "bg-green-100 text-green-800",
   Descontinuado: "bg-black/10 text-black/50",
-  "En tránsito": "bg-blue-100 text-blue-800",
+  "En producción": "bg-blue-100 text-blue-800",
 };
 
 export function parsePrecio(precio: string): number {
@@ -166,7 +180,7 @@ export const productos: Producto[] = [
     stock: 18,
     stockObjetivo: 20,
     precio: "$420.000",
-    estado: "En tránsito",
+    estado: "En producción",
     coloresMadera: [{ nombre: "Roble", color: "#B98655" }],
   },
   {

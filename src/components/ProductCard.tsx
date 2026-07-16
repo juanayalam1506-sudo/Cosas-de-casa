@@ -1,6 +1,13 @@
 import ProductImagePlaceholder from "./ProductImagePlaceholder";
 import VariantesDisplay from "./VariantesDisplay";
-import { coleccionStyles, estadoProductoStyles, tieneVariantes, type Producto } from "@/lib/productos";
+import {
+  coleccionStyles,
+  estadoProductoStyles,
+  estadosProducto,
+  tieneVariantes,
+  type EstadoProducto,
+  type Producto,
+} from "@/lib/productos";
 
 function colorBarraStock(stock: number, objetivo: number) {
   if (stock <= 5) return "bg-red-500";
@@ -12,10 +19,12 @@ export default function ProductCard({
   producto,
   onAjustarStock,
   onVerHistorial,
+  onCambiarEstado,
 }: {
   producto: Producto;
   onAjustarStock: (delta: number) => void;
   onVerHistorial: () => void;
+  onCambiarEstado: (estado: EstadoProducto) => void;
 }) {
   const stockBajo = producto.stock <= 5;
   const objetivo = producto.stockObjetivo ?? 20;
@@ -31,9 +40,17 @@ export default function ProductCard({
             {producto.subcategoria ? `${producto.categoria} · ${producto.subcategoria}` : producto.categoria}
           </span>
           <div className="flex items-center gap-1">
-            <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${estadoProductoStyles[estado]}`}>
-              {estado}
-            </span>
+            <select
+              value={estado}
+              onChange={(e) => onCambiarEstado(e.target.value as EstadoProducto)}
+              className={`cursor-pointer rounded-full border-0 px-2 py-0.5 text-[11px] font-medium focus:outline-none focus:ring-1 focus:ring-brand-pink ${estadoProductoStyles[estado]}`}
+            >
+              {estadosProducto.map((e) => (
+                <option key={e} value={e}>
+                  {e}
+                </option>
+              ))}
+            </select>
             <span
               className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
                 coleccionStyles[producto.coleccion] ?? "bg-brand-gray/15 text-black/70"

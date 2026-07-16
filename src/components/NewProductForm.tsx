@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import {
+  camposVariantePorCategoria,
   categorias,
   colecciones,
   estadosProducto,
   subcategoriasPorCategoria,
+  type PatronVariante,
   type Producto,
+  type Variante,
 } from "@/lib/productos";
+import PatronInput from "./PatronInput";
+import VarianteColorInput from "./VarianteColorInput";
 
 const categoriasSeleccionables = categorias.filter((c) => c !== "Todos");
 const coleccionesSeleccionables = colecciones.filter((c) => c !== "Todas");
@@ -28,12 +33,19 @@ export default function NewProductForm({
   const [stockObjetivo, setStockObjetivo] = useState("");
   const [precio, setPrecio] = useState("");
   const [estado, setEstado] = useState(estadosProducto[0]);
+  const [coloresMadera, setColoresMadera] = useState<Variante[]>([]);
+  const [coloresTela, setColoresTela] = useState<Variante[]>([]);
+  const [patrones, setPatrones] = useState<PatronVariante[]>([]);
 
   const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
+  const campos = camposVariantePorCategoria(categoria);
 
   const handleCategoriaChange = (nuevaCategoria: string) => {
     setCategoria(nuevaCategoria);
     setSubcategoria("");
+    setColoresMadera([]);
+    setColoresTela([]);
+    setPatrones([]);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,6 +62,9 @@ export default function NewProductForm({
       stockObjetivo: stockObjetivo.trim() ? Number(stockObjetivo) : undefined,
       precio: precio.trim(),
       estado,
+      coloresMadera: campos.madera && coloresMadera.length ? coloresMadera : undefined,
+      coloresTela: campos.tela && coloresTela.length ? coloresTela : undefined,
+      patrones: campos.patron && patrones.length ? patrones : undefined,
     });
   };
 
@@ -121,6 +136,16 @@ export default function NewProductForm({
           </select>
         </div>
       )}
+
+      {campos.madera && (
+        <VarianteColorInput etiqueta="Colores de madera" valores={coloresMadera} onChange={setColoresMadera} />
+      )}
+
+      {campos.tela && (
+        <VarianteColorInput etiqueta="Colores de tela" valores={coloresTela} onChange={setColoresTela} />
+      )}
+
+      {campos.patron && <PatronInput valores={patrones} onChange={setPatrones} />}
 
       <div>
         <label htmlFor="coleccion" className="mb-1 block text-sm font-medium text-black/70">

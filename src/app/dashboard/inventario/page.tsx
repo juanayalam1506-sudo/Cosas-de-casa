@@ -13,6 +13,7 @@ import {
   parsePrecio,
   productos as productosIniciales,
   subcategoriasPorCategoria,
+  type EstadoProducto,
   type MovimientoStock,
   type Producto,
 } from "@/lib/productos";
@@ -105,6 +106,12 @@ export default function InventarioPage() {
   const agregarProducto = (producto: Producto) => {
     setProductos((actual) => [...actual, producto]);
     setFormAbierto(false);
+  };
+
+  const cambiarEstado = (producto: Producto, nuevoEstado: EstadoProducto) => {
+    setProductos((actual) =>
+      actual.map((p) => (p.codigo === producto.codigo ? { ...p, estado: nuevoEstado } : p)),
+    );
   };
 
   const ajustarStock = (producto: Producto, delta: number) => {
@@ -241,12 +248,18 @@ export default function InventarioPage() {
                 producto={p}
                 onAjustarStock={(delta) => ajustarStock(p, delta)}
                 onVerHistorial={() => setHistorialProducto(p)}
+                onCambiarEstado={(nuevoEstado) => cambiarEstado(p, nuevoEstado)}
               />
             ))}
           </div>
         ) : (
           <div className="pt-3">
-            <ProductTable productos={productosFiltrados} onAjustarStock={ajustarStock} onVerHistorial={setHistorialProducto} />
+            <ProductTable
+              productos={productosFiltrados}
+              onAjustarStock={ajustarStock}
+              onVerHistorial={setHistorialProducto}
+              onCambiarEstado={cambiarEstado}
+            />
           </div>
         )}
       </div>
