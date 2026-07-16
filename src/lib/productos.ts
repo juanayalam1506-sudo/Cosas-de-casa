@@ -5,6 +5,14 @@ export type Variante = {
   color: string;
 };
 
+export type TipoPatron = "rayas" | "cuadros" | "lunares";
+
+export type PatronVariante = {
+  nombre: string;
+  tipo: TipoPatron;
+  colores: [string, string];
+};
+
 export type Producto = {
   codigo: string;
   nombre: string;
@@ -15,8 +23,14 @@ export type Producto = {
   stockObjetivo?: number;
   precio: string;
   estado?: EstadoProducto;
-  variantes?: Variante[];
+  coloresMadera?: Variante[];
+  coloresTela?: Variante[];
+  patrones?: PatronVariante[];
 };
+
+export function tieneVariantes(producto: Producto): boolean {
+  return Boolean(producto.coloresMadera || producto.coloresTela || producto.patrones);
+}
 
 export type PiezaCatalogo = {
   id: string;
@@ -83,7 +97,8 @@ export const productos: Producto[] = [
     stockObjetivo: 15,
     precio: "$2.450.000",
     estado: "Activo",
-    variantes: [
+    coloresMadera: [{ nombre: "Roble", color: "#B98655" }],
+    coloresTela: [
       { nombre: "Terracota", color: "#C97B5A" },
       { nombre: "Beige", color: "#D9C7B8" },
       { nombre: "Gris", color: "#9CA3AF" },
@@ -98,7 +113,8 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$1.980.000",
     estado: "Activo",
-    variantes: [
+    coloresMadera: [{ nombre: "Nogal", color: "#6B4A33" }],
+    coloresTela: [
       { nombre: "Gris claro", color: "#B8BEC7" },
       { nombre: "Verde salvia", color: "#8A9A82" },
     ],
@@ -112,7 +128,7 @@ export const productos: Producto[] = [
     stockObjetivo: 6,
     precio: "$3.200.000",
     estado: "Activo",
-    variantes: [
+    coloresMadera: [
       { nombre: "Roble", color: "#B98655" },
       { nombre: "Nogal", color: "#6B4A33" },
     ],
@@ -127,7 +143,7 @@ export const productos: Producto[] = [
     stockObjetivo: 8,
     precio: "$1.890.000",
     estado: "Activo",
-    variantes: [{ nombre: "Roble", color: "#B98655" }],
+    coloresMadera: [{ nombre: "Roble", color: "#B98655" }],
   },
   {
     codigo: "MES-002",
@@ -139,7 +155,7 @@ export const productos: Producto[] = [
     stockObjetivo: 12,
     precio: "$780.000",
     estado: "Activo",
-    variantes: [{ nombre: "Nogal claro", color: "#A9794F" }],
+    coloresMadera: [{ nombre: "Nogal claro", color: "#A9794F" }],
   },
   {
     codigo: "MES-003",
@@ -151,7 +167,7 @@ export const productos: Producto[] = [
     stockObjetivo: 20,
     precio: "$420.000",
     estado: "En tránsito",
-    variantes: [{ nombre: "Roble", color: "#B98655" }],
+    coloresMadera: [{ nombre: "Roble", color: "#B98655" }],
   },
   {
     codigo: "MES-004",
@@ -163,7 +179,7 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$350.000",
     estado: "Activo",
-    variantes: [{ nombre: "Natural", color: "#C8A46E" }],
+    coloresMadera: [{ nombre: "Natural", color: "#C8A46E" }],
   },
   {
     codigo: "CAM-001",
@@ -174,7 +190,7 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$1.320.000",
     estado: "Activo",
-    variantes: [
+    coloresMadera: [
       { nombre: "Roble claro", color: "#C8A46E" },
       { nombre: "Nogal", color: "#6B4A33" },
     ],
@@ -188,7 +204,7 @@ export const productos: Producto[] = [
     stockObjetivo: 6,
     precio: "$2.100.000",
     estado: "Activo",
-    variantes: [{ nombre: "Nogal oscuro", color: "#5C3A21" }],
+    coloresMadera: [{ nombre: "Nogal oscuro", color: "#5C3A21" }],
   },
   {
     codigo: "SIL-001",
@@ -200,10 +216,11 @@ export const productos: Producto[] = [
     stockObjetivo: 24,
     precio: "$310.000",
     estado: "Activo",
-    variantes: [
+    coloresMadera: [
       { nombre: "Natural", color: "#C8A46E" },
       { nombre: "Nogal", color: "#6B4A33" },
     ],
+    coloresTela: [{ nombre: "Mostaza", color: "#C9A227" }],
   },
   {
     codigo: "SIL-002",
@@ -215,7 +232,8 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$890.000",
     estado: "Activo",
-    variantes: [{ nombre: "Rattan natural", color: "#C9A66B" }],
+    coloresMadera: [{ nombre: "Rattan natural", color: "#C9A66B" }],
+    coloresTela: [{ nombre: "Crudo", color: "#E7DCC6" }],
   },
   {
     codigo: "ESP-001",
@@ -226,7 +244,7 @@ export const productos: Producto[] = [
     stockObjetivo: 15,
     precio: "$240.000",
     estado: "Activo",
-    variantes: [{ nombre: "Latón", color: "#B08D57" }],
+    coloresMadera: [{ nombre: "Latón", color: "#B08D57" }],
   },
   {
     codigo: "ESP-002",
@@ -237,7 +255,7 @@ export const productos: Producto[] = [
     stockObjetivo: 12,
     precio: "$260.000",
     estado: "Descontinuado",
-    variantes: [
+    coloresMadera: [
       { nombre: "Natural", color: "#C8A46E" },
       { nombre: "Negro", color: "#2B2B2B" },
     ],
@@ -261,10 +279,10 @@ export const productos: Producto[] = [
     stockObjetivo: 25,
     precio: "$95.000",
     estado: "Activo",
-    variantes: [
-      { nombre: "Bohemio", color: "#C97B5A" },
-      { nombre: "Rayas", color: "#8A9A82" },
-      { nombre: "Liso beige", color: "#D9C7B8" },
+    patrones: [
+      { nombre: "Bohemio a rayas", tipo: "rayas", colores: ["#C97B5A", "#D9C7B8"] },
+      { nombre: "Cuadros verdes", tipo: "cuadros", colores: ["#8A9A82", "#F2ECE1"] },
+      { nombre: "Lunares", tipo: "lunares", colores: ["#D9C7B8", "#6B4A33"] },
     ],
   },
   {
@@ -276,10 +294,10 @@ export const productos: Producto[] = [
     stockObjetivo: 15,
     precio: "$420.000",
     estado: "Activo",
-    variantes: [
-      { nombre: "Beige", color: "#D9C7B8" },
-      { nombre: "Terracota", color: "#C97B5A" },
-      { nombre: "Gris", color: "#9CA3AF" },
+    patrones: [
+      { nombre: "Rayas terracota", tipo: "rayas", colores: ["#C97B5A", "#D9C7B8"] },
+      { nombre: "Cuadros gris", tipo: "cuadros", colores: ["#9CA3AF", "#F2ECE1"] },
+      { nombre: "Lunares beige", tipo: "lunares", colores: ["#D9C7B8", "#8A9A82"] },
     ],
   },
   {
@@ -291,7 +309,7 @@ export const productos: Producto[] = [
     stockObjetivo: 25,
     precio: "$150.000",
     estado: "Activo",
-    variantes: [
+    coloresTela: [
       { nombre: "Lino natural", color: "#E7DCC6" },
       { nombre: "Verde salvia", color: "#8A9A82" },
     ],

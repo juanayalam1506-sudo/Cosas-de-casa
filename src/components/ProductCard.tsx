@@ -1,6 +1,6 @@
-import ColorSwatches from "./ColorSwatches";
 import ProductImagePlaceholder from "./ProductImagePlaceholder";
-import { coleccionStyles, estadoProductoStyles, type Producto } from "@/lib/productos";
+import VariantesDisplay from "./VariantesDisplay";
+import { coleccionStyles, estadoProductoStyles, tieneVariantes, type Producto } from "@/lib/productos";
 
 function colorBarraStock(stock: number, objetivo: number) {
   if (stock <= 5) return "bg-red-500";
@@ -46,10 +46,9 @@ export default function ProductCard({
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
         <p className="text-xs text-black/40">{producto.codigo}</p>
 
-        {producto.variantes && (
-          <div className="mt-2 flex items-center gap-2">
-            <span className="text-xs text-black/40">Colores</span>
-            <ColorSwatches variantes={producto.variantes} />
+        {tieneVariantes(producto) && (
+          <div className="mt-2">
+            <VariantesDisplay producto={producto} />
           </div>
         )}
 
