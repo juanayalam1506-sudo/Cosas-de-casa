@@ -1,3 +1,4 @@
+import ColorSwatches from "./ColorSwatches";
 import ProductImagePlaceholder from "./ProductImagePlaceholder";
 import { coleccionStyles, estadoProductoStyles, type Producto } from "@/lib/productos";
 
@@ -44,6 +45,13 @@ export default function ProductCard({
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
         <p className="text-xs text-black/40">{producto.codigo}</p>
+
+        {producto.variantes && (
+          <div className="mt-2 flex items-center gap-2">
+            <span className="text-xs text-black/40">Colores</span>
+            <ColorSwatches variantes={producto.variantes} />
+          </div>
+        )}
 
         <div className="mt-2 flex items-center justify-between">
           <span className="text-sm text-black/70">{producto.precio}</span>

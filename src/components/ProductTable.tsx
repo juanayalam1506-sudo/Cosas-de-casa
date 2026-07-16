@@ -1,3 +1,4 @@
+import ColorSwatches from "./ColorSwatches";
 import { coleccionStyles, estadoProductoStyles, type Producto } from "@/lib/productos";
 
 export default function ProductTable({
@@ -19,6 +20,7 @@ export default function ProductTable({
               <th className="px-4 py-3 font-medium">Producto</th>
               <th className="px-4 py-3 font-medium">Categoría</th>
               <th className="px-4 py-3 font-medium">Colección</th>
+              <th className="px-4 py-3 font-medium">Colores</th>
               <th className="px-4 py-3 font-medium">Estado</th>
               <th className="px-4 py-3 font-medium">Stock</th>
               <th className="px-4 py-3 font-medium">Precio</th>
@@ -45,6 +47,9 @@ export default function ProductTable({
                     >
                       {p.coleccion}
                     </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <ColorSwatches variantes={p.variantes} />
                   </td>
                   <td className="px-4 py-3">
                     <span className={`rounded-full px-2 py-1 text-xs font-medium ${estadoProductoStyles[estado]}`}>

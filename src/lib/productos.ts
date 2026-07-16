@@ -1,5 +1,10 @@
 export type EstadoProducto = "Activo" | "Descontinuado" | "En tránsito";
 
+export type Variante = {
+  nombre: string;
+  color: string;
+};
+
 export type Producto = {
   codigo: string;
   nombre: string;
@@ -10,6 +15,7 @@ export type Producto = {
   stockObjetivo?: number;
   precio: string;
   estado?: EstadoProducto;
+  variantes?: Variante[];
 };
 
 export type PiezaCatalogo = {
@@ -39,6 +45,8 @@ export const categorias = [
   "Sofás",
   "Camas",
   "Cojines",
+  "Tapetes",
+  "Cortinas",
 ];
 
 export const subcategoriasPorCategoria: Record<string, string[]> = {
@@ -75,6 +83,11 @@ export const productos: Producto[] = [
     stockObjetivo: 15,
     precio: "$2.450.000",
     estado: "Activo",
+    variantes: [
+      { nombre: "Terracota", color: "#C97B5A" },
+      { nombre: "Beige", color: "#D9C7B8" },
+      { nombre: "Gris", color: "#9CA3AF" },
+    ],
   },
   {
     codigo: "SOF-002",
@@ -85,6 +98,10 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$1.980.000",
     estado: "Activo",
+    variantes: [
+      { nombre: "Gris claro", color: "#B8BEC7" },
+      { nombre: "Verde salvia", color: "#8A9A82" },
+    ],
   },
   {
     codigo: "COM-001",
@@ -95,6 +112,10 @@ export const productos: Producto[] = [
     stockObjetivo: 6,
     precio: "$3.200.000",
     estado: "Activo",
+    variantes: [
+      { nombre: "Roble", color: "#B98655" },
+      { nombre: "Nogal", color: "#6B4A33" },
+    ],
   },
   {
     codigo: "MES-001",
@@ -106,6 +127,7 @@ export const productos: Producto[] = [
     stockObjetivo: 8,
     precio: "$1.890.000",
     estado: "Activo",
+    variantes: [{ nombre: "Roble", color: "#B98655" }],
   },
   {
     codigo: "MES-002",
@@ -117,6 +139,7 @@ export const productos: Producto[] = [
     stockObjetivo: 12,
     precio: "$780.000",
     estado: "Activo",
+    variantes: [{ nombre: "Nogal claro", color: "#A9794F" }],
   },
   {
     codigo: "MES-003",
@@ -128,6 +151,7 @@ export const productos: Producto[] = [
     stockObjetivo: 20,
     precio: "$420.000",
     estado: "En tránsito",
+    variantes: [{ nombre: "Roble", color: "#B98655" }],
   },
   {
     codigo: "MES-004",
@@ -139,6 +163,7 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$350.000",
     estado: "Activo",
+    variantes: [{ nombre: "Natural", color: "#C8A46E" }],
   },
   {
     codigo: "CAM-001",
@@ -149,6 +174,10 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$1.320.000",
     estado: "Activo",
+    variantes: [
+      { nombre: "Roble claro", color: "#C8A46E" },
+      { nombre: "Nogal", color: "#6B4A33" },
+    ],
   },
   {
     codigo: "CAM-002",
@@ -159,6 +188,7 @@ export const productos: Producto[] = [
     stockObjetivo: 6,
     precio: "$2.100.000",
     estado: "Activo",
+    variantes: [{ nombre: "Nogal oscuro", color: "#5C3A21" }],
   },
   {
     codigo: "SIL-001",
@@ -170,6 +200,10 @@ export const productos: Producto[] = [
     stockObjetivo: 24,
     precio: "$310.000",
     estado: "Activo",
+    variantes: [
+      { nombre: "Natural", color: "#C8A46E" },
+      { nombre: "Nogal", color: "#6B4A33" },
+    ],
   },
   {
     codigo: "SIL-002",
@@ -181,6 +215,7 @@ export const productos: Producto[] = [
     stockObjetivo: 10,
     precio: "$890.000",
     estado: "Activo",
+    variantes: [{ nombre: "Rattan natural", color: "#C9A66B" }],
   },
   {
     codigo: "ESP-001",
@@ -191,6 +226,7 @@ export const productos: Producto[] = [
     stockObjetivo: 15,
     precio: "$240.000",
     estado: "Activo",
+    variantes: [{ nombre: "Latón", color: "#B08D57" }],
   },
   {
     codigo: "ESP-002",
@@ -201,6 +237,10 @@ export const productos: Producto[] = [
     stockObjetivo: 12,
     precio: "$260.000",
     estado: "Descontinuado",
+    variantes: [
+      { nombre: "Natural", color: "#C8A46E" },
+      { nombre: "Negro", color: "#2B2B2B" },
+    ],
   },
   {
     codigo: "DEC-001",
@@ -221,6 +261,40 @@ export const productos: Producto[] = [
     stockObjetivo: 25,
     precio: "$95.000",
     estado: "Activo",
+    variantes: [
+      { nombre: "Bohemio", color: "#C97B5A" },
+      { nombre: "Rayas", color: "#8A9A82" },
+      { nombre: "Liso beige", color: "#D9C7B8" },
+    ],
+  },
+  {
+    codigo: "TAP-001",
+    nombre: "Tapete",
+    categoria: "Tapetes",
+    coleccion: "Colección Oslo",
+    stock: 12,
+    stockObjetivo: 15,
+    precio: "$420.000",
+    estado: "Activo",
+    variantes: [
+      { nombre: "Beige", color: "#D9C7B8" },
+      { nombre: "Terracota", color: "#C97B5A" },
+      { nombre: "Gris", color: "#9CA3AF" },
+    ],
+  },
+  {
+    codigo: "COR-001",
+    nombre: "Cortina",
+    categoria: "Cortinas",
+    coleccion: "Colección Victoria",
+    stock: 20,
+    stockObjetivo: 25,
+    precio: "$150.000",
+    estado: "Activo",
+    variantes: [
+      { nombre: "Lino natural", color: "#E7DCC6" },
+      { nombre: "Verde salvia", color: "#8A9A82" },
+    ],
   },
 ];
 
