@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 // Catálogo, Clientes y Entregas quedan suspendidas del menú mientras nos
 // centramos en dejar Inventario listo para la empresa.
@@ -12,9 +13,9 @@ export default function Sidebar() {
 
   return (
     <aside className="flex w-60 shrink-0 flex-col bg-brand-gray text-white">
-      <div className="px-5 py-6">
+      <div className="flex items-center gap-3 px-5 py-6">
+        <Logo />
         <p className="text-lg font-semibold">Cosas de Casa</p>
-        <p className="text-xs text-white/60">Panel interno</p>
       </div>
 
       <nav className="flex-1 space-y-1 px-3">

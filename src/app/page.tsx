@@ -1,10 +1,12 @@
+import Logo from "@/components/Logo";
+
 export default function LoginPage() {
   return (
     <main className="flex flex-1 items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        <div className="mb-8 text-center">
+        <div className="mb-8 flex flex-col items-center gap-3">
+          <Logo className="h-14 w-14" />
           <h1 className="text-2xl font-semibold text-black">Cosas de Casa</h1>
-          <p className="mt-1 text-sm text-black/50">Panel interno</p>
         </div>
 
         <form className="space-y-4 rounded-xl border border-brand-pink/40 bg-white p-6 shadow-sm">

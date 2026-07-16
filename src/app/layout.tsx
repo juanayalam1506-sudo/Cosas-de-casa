@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cosas de Casa - Panel interno",
-  description: "Panel interno de inventario, clientes y entregas de Cosas de Casa",
+  title: "Cosas de Casa",
+  description: "Sistema de inventario y catálogo de Cosas de Casa",
 };
 
 export default function RootLayout({
