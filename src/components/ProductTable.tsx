@@ -20,7 +20,6 @@ export default function ProductTable({
               <th className="px-4 py-3 font-medium">Categoría</th>
               <th className="px-4 py-3 font-medium">Colección</th>
               <th className="px-4 py-3 font-medium">Estado</th>
-              <th className="px-4 py-3 font-medium">Proveedor</th>
               <th className="px-4 py-3 font-medium">Stock</th>
               <th className="px-4 py-3 font-medium">Precio</th>
               <th className="px-4 py-3 font-medium"></th>
@@ -52,7 +51,6 @@ export default function ProductTable({
                       {estado}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-black/60">{p.proveedor ?? "—"}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1">
                       <button

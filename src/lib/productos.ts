@@ -9,7 +9,6 @@ export type Producto = {
   stock: number;
   stockObjetivo?: number;
   precio: string;
-  proveedor?: string;
   estado?: EstadoProducto;
 };
 
@@ -75,7 +74,6 @@ export const productos: Producto[] = [
     stock: 12,
     stockObjetivo: 15,
     precio: "$2.450.000",
-    proveedor: "Tapizados Andrade",
     estado: "Activo",
   },
   {
@@ -86,7 +84,6 @@ export const productos: Producto[] = [
     stock: 3,
     stockObjetivo: 10,
     precio: "$1.980.000",
-    proveedor: "Tapizados Andrade",
     estado: "Activo",
   },
   {
@@ -97,7 +94,6 @@ export const productos: Producto[] = [
     stock: 3,
     stockObjetivo: 6,
     precio: "$3.200.000",
-    proveedor: "Maderas del Llano",
     estado: "Activo",
   },
   {
@@ -109,7 +105,6 @@ export const productos: Producto[] = [
     stock: 4,
     stockObjetivo: 8,
     precio: "$1.890.000",
-    proveedor: "Maderas del Llano",
     estado: "Activo",
   },
   {
@@ -121,7 +116,6 @@ export const productos: Producto[] = [
     stock: 9,
     stockObjetivo: 12,
     precio: "$780.000",
-    proveedor: "Maderas del Llano",
     estado: "Activo",
   },
   {
@@ -133,7 +127,6 @@ export const productos: Producto[] = [
     stock: 18,
     stockObjetivo: 20,
     precio: "$420.000",
-    proveedor: "Maderas del Llano",
     estado: "En tránsito",
   },
   {
@@ -145,7 +138,6 @@ export const productos: Producto[] = [
     stock: 6,
     stockObjetivo: 10,
     precio: "$350.000",
-    proveedor: "Maderas del Llano",
     estado: "Activo",
   },
   {
@@ -156,7 +148,6 @@ export const productos: Producto[] = [
     stock: 7,
     stockObjetivo: 10,
     precio: "$1.320.000",
-    proveedor: "Maderas del Llano",
     estado: "Activo",
   },
   {
@@ -167,7 +158,6 @@ export const productos: Producto[] = [
     stock: 2,
     stockObjetivo: 6,
     precio: "$2.100.000",
-    proveedor: "Maderas del Llano",
     estado: "Activo",
   },
   {
@@ -179,7 +169,6 @@ export const productos: Producto[] = [
     stock: 25,
     stockObjetivo: 24,
     precio: "$310.000",
-    proveedor: "Metalúrgica Andina",
     estado: "Activo",
   },
   {
@@ -191,7 +180,6 @@ export const productos: Producto[] = [
     stock: 8,
     stockObjetivo: 10,
     precio: "$890.000",
-    proveedor: "Rattan y Fibras S.A.S",
     estado: "Activo",
   },
   {
@@ -202,7 +190,6 @@ export const productos: Producto[] = [
     stock: 15,
     stockObjetivo: 15,
     precio: "$240.000",
-    proveedor: "Vidrios y Espejos del Meta",
     estado: "Activo",
   },
   {
@@ -213,7 +200,6 @@ export const productos: Producto[] = [
     stock: 5,
     stockObjetivo: 12,
     precio: "$260.000",
-    proveedor: "Vidrios y Espejos del Meta",
     estado: "Descontinuado",
   },
   {
@@ -224,7 +210,6 @@ export const productos: Producto[] = [
     stock: 10,
     stockObjetivo: 15,
     precio: "$180.000",
-    proveedor: "Decoraciones Llano",
     estado: "Activo",
   },
   {
@@ -235,7 +220,6 @@ export const productos: Producto[] = [
     stock: 30,
     stockObjetivo: 25,
     precio: "$95.000",
-    proveedor: "Textiles Boho",
     estado: "Activo",
   },
 ];

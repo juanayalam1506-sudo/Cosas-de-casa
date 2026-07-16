@@ -27,7 +27,6 @@ export default function NewProductForm({
   const [stock, setStock] = useState("");
   const [stockObjetivo, setStockObjetivo] = useState("");
   const [precio, setPrecio] = useState("");
-  const [proveedor, setProveedor] = useState("");
   const [estado, setEstado] = useState(estadosProducto[0]);
 
   const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
@@ -50,7 +49,6 @@ export default function NewProductForm({
       stock: Number(stock),
       stockObjetivo: stockObjetivo.trim() ? Number(stockObjetivo) : undefined,
       precio: precio.trim(),
-      proveedor: proveedor.trim() || undefined,
       estado,
     });
   };
@@ -79,7 +77,7 @@ export default function NewProductForm({
           id="nombre"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-          placeholder="Ej. Sofá Milán 3 puestos"
+          placeholder="Ej. Sofá"
           required
           className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
         />
@@ -184,19 +182,6 @@ export default function NewProductForm({
           onChange={(e) => setPrecio(e.target.value)}
           placeholder="$1.500.000"
           required
-          className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="proveedor" className="mb-1 block text-sm font-medium text-black/70">
-          Proveedor
-        </label>
-        <input
-          id="proveedor"
-          value={proveedor}
-          onChange={(e) => setProveedor(e.target.value)}
-          placeholder="Ej. Maderas del Llano"
           className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
         />
       </div>
