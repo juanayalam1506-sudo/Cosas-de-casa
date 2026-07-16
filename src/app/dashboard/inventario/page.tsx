@@ -145,9 +145,7 @@ export default function InventarioPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold text-black">Inventario</h1>
-          <p className="mt-1 text-sm text-black/50">
-            Stock de lo que se vende regularmente. Todavía sin conectar a Supabase.
-          </p>
+          <p className="mt-1 text-sm text-black/50">Stock de lo que se vende regularmente.</p>
         </div>
         <div className="flex items-center gap-2">
           <button

@@ -7,17 +7,7 @@ const clientes = [
 export default function ClientesPage() {
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold text-black">Clientes</h1>
-          <p className="mt-1 text-sm text-black/50">
-            Datos de ejemplo — la conexión a Supabase se agregará después.
-          </p>
-        </div>
-        <span className="rounded-full bg-brand-pink/20 px-3 py-1 text-xs font-medium text-black/70">
-          Próximamente
-        </span>
-      </div>
+      <h1 className="text-xl font-semibold text-black">Clientes</h1>
 
       <div className="mt-6 overflow-hidden rounded-xl border border-brand-gray/20 bg-white shadow-sm">
         <table className="w-full text-left text-sm">

@@ -69,7 +69,7 @@ export function parsePrecio(precio: string): number {
 export const productos: Producto[] = [
   {
     codigo: "SOF-001",
-    nombre: "Sofá Milán 3 puestos",
+    nombre: "Sofá",
     categoria: "Sofás",
     coleccion: "Colección Victoria",
     stock: 12,
@@ -80,7 +80,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "SOF-002",
-    nombre: "Sofá Nórdico 2 puestos",
+    nombre: "Sofá",
     categoria: "Sofás",
     coleccion: "Colección Oslo",
     stock: 3,
@@ -91,7 +91,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "COM-001",
-    nombre: "Juego de Comedor 6 puestos",
+    nombre: "Comedor",
     categoria: "Comedor",
     coleccion: "Colección Victoria",
     stock: 3,
@@ -102,7 +102,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "MES-001",
-    nombre: "Mesa de comedor Roble",
+    nombre: "Mesa de comedor",
     categoria: "Mesas",
     subcategoria: "Mesas de comedor",
     coleccion: "Colección Victoria",
@@ -114,7 +114,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "MES-002",
-    nombre: "Mesa de centro Nórdica",
+    nombre: "Mesa de centro",
     categoria: "Mesas",
     subcategoria: "Mesas de centro",
     coleccion: "Colección Oslo",
@@ -126,7 +126,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "MES-003",
-    nombre: "Mesa de noche Roble",
+    nombre: "Mesa de noche",
     categoria: "Mesas",
     subcategoria: "Mesas de noche",
     coleccion: "Colección Victoria",
@@ -138,7 +138,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "MES-004",
-    nombre: "Mesa auxiliar Redonda",
+    nombre: "Mesa auxiliar",
     categoria: "Mesas",
     subcategoria: "Mesas auxiliares",
     coleccion: "Colección Oslo",
@@ -150,7 +150,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "CAM-001",
-    nombre: "Cama Nórdica Queen",
+    nombre: "Cama",
     categoria: "Camas",
     coleccion: "Colección Oslo",
     stock: 7,
@@ -161,7 +161,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "CAM-002",
-    nombre: "Cama Victoria King",
+    nombre: "Cama",
     categoria: "Camas",
     coleccion: "Colección Victoria",
     stock: 2,
@@ -172,7 +172,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "SIL-001",
-    nombre: "Silla Escandinava",
+    nombre: "Silla",
     categoria: "Sillas",
     subcategoria: "Fijas",
     coleccion: "Colección Oslo",
@@ -184,7 +184,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "SIL-002",
-    nombre: "Mecedora Boho Rattan",
+    nombre: "Mecedora",
     categoria: "Sillas",
     subcategoria: "Mecedoras",
     coleccion: "Colección Victoria",
@@ -196,7 +196,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "ESP-001",
-    nombre: "Espejo Redondo Latón",
+    nombre: "Espejo",
     categoria: "Espejos",
     coleccion: "Colección Victoria",
     stock: 15,
@@ -207,7 +207,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "ESP-002",
-    nombre: "Espejo Ovalado Nórdico",
+    nombre: "Espejo",
     categoria: "Espejos",
     coleccion: "Colección Oslo",
     stock: 5,
@@ -218,7 +218,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "DEC-001",
-    nombre: "Cuadro Decorativo Trío",
+    nombre: "Decoración",
     categoria: "Decoración",
     coleccion: "Colección Oslo",
     stock: 10,
@@ -229,7 +229,7 @@ export const productos: Producto[] = [
   },
   {
     codigo: "COJ-001",
-    nombre: "Set de Cojines Boho",
+    nombre: "Cojín",
     categoria: "Cojines",
     coleccion: "Colección Victoria",
     stock: 30,

@@ -23,17 +23,7 @@ export default function EntregasPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold text-black">Entregas</h1>
-          <p className="mt-1 text-sm text-black/50">
-            Datos de ejemplo — la conexión a Supabase se agregará después.
-          </p>
-        </div>
-        <span className="rounded-full bg-brand-pink/20 px-3 py-1 text-xs font-medium text-black/70">
-          Próximamente
-        </span>
-      </div>
+      <h1 className="text-xl font-semibold text-black">Entregas</h1>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
         <DeliveryCalendar
