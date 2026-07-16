@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import CategoryFilter from "@/components/CategoryFilter";
+import CustomSelect from "@/components/CustomSelect";
 import InventorySummary from "@/components/InventorySummary";
 import Modal from "@/components/Modal";
 import NewProductForm from "@/components/NewProductForm";
@@ -19,6 +20,14 @@ import {
 } from "@/lib/productos";
 
 type Orden = "nombre" | "precio-asc" | "precio-desc" | "stock-asc" | "stock-desc";
+
+const opcionesOrden: { value: Orden; label: string }[] = [
+  { value: "nombre", label: "Nombre (A-Z)" },
+  { value: "precio-asc", label: "Precio: menor a mayor" },
+  { value: "precio-desc", label: "Precio: mayor a menor" },
+  { value: "stock-asc", label: "Stock: menor a mayor" },
+  { value: "stock-desc", label: "Stock: mayor a menor" },
+];
 
 function productosACSV(productos: Producto[]): string {
   const columnas = [
@@ -206,18 +215,7 @@ export default function InventarioPage() {
             Por reabastecer
           </button>
 
-          <select
-            value={orden}
-            onChange={(e) => setOrden(e.target.value as Orden)}
-            disabled={soloReabastecer}
-            className="rounded-full border border-brand-gray/20 bg-white px-4 py-2 text-sm text-black shadow-sm focus:border-brand-pink focus:outline-none focus:ring-2 focus:ring-brand-pink/30 disabled:opacity-40"
-          >
-            <option value="nombre">Nombre (A-Z)</option>
-            <option value="precio-asc">Precio: menor a mayor</option>
-            <option value="precio-desc">Precio: mayor a menor</option>
-            <option value="stock-asc">Stock: menor a mayor</option>
-            <option value="stock-desc">Stock: mayor a menor</option>
-          </select>
+          <CustomSelect value={orden} onChange={setOrden} options={opcionesOrden} disabled={soloReabastecer} />
 
           <div className="flex rounded-full border border-brand-gray/20 bg-white p-1 shadow-sm">
             <button
