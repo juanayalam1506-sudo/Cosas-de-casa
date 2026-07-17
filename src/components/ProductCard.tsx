@@ -1,3 +1,4 @@
+import InfoTooltip from "./InfoTooltip";
 import ProductImagePlaceholder from "./ProductImagePlaceholder";
 import VariantesDisplay from "./VariantesDisplay";
 import {
@@ -54,15 +55,16 @@ export default function ProductCard({
           </div>
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
-        <p className="text-xs text-black/40">{producto.codigo}</p>
-
-        {tieneInfoAdicional(producto) && (
-          <p className="mt-1 text-[11px] text-black/40">
-            {[producto.medidas, producto.carpintero && `Hecho por ${producto.carpintero}`]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        )}
+        <div className="flex items-center gap-1.5">
+          <p className="text-xs text-black/40">{producto.codigo}</p>
+          {tieneInfoAdicional(producto) && (
+            <InfoTooltip
+              texto={[producto.medidas, producto.carpintero && `Hecho por ${producto.carpintero}`]
+                .filter(Boolean)
+                .join(" · ")}
+            />
+          )}
+        </div>
 
         {tieneVariantes(producto) && (
           <div className="mt-2">
