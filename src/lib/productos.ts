@@ -129,6 +129,8 @@ export const productos: Producto[] = [
       { nombre: "Azul petróleo", color: "#3F5B66" },
       { nombre: "Verde oliva", color: "#6E7A4B" },
     ],
+    medidas: "210 x 95 x 85 cm",
+    carpintero: "Carlos Pérez",
   },
   {
     codigo: "SOF-002",
@@ -144,6 +146,8 @@ export const productos: Producto[] = [
       { nombre: "Gris claro", color: "#B8BEC7" },
       { nombre: "Verde salvia", color: "#8A9A82" },
     ],
+    medidas: "190 x 90 x 80 cm",
+    carpintero: "Miguel Rojas",
   },
   {
     codigo: "COM-001",
@@ -158,6 +162,8 @@ export const productos: Producto[] = [
       { nombre: "Roble", color: "#B98655" },
       { nombre: "Nogal", color: "#6B4A33" },
     ],
+    medidas: "180 x 90 x 75 cm",
+    carpintero: "Andrés Gómez",
   },
   {
     codigo: "MES-001",
@@ -170,6 +176,8 @@ export const productos: Producto[] = [
     precio: "$1.890.000",
     estado: "Activo",
     coloresMadera: [{ nombre: "Roble", color: "#B98655" }],
+    medidas: "180 x 90 x 75 cm",
+    carpintero: "Carlos Pérez",
   },
   {
     codigo: "MES-002",
@@ -182,6 +190,8 @@ export const productos: Producto[] = [
     precio: "$780.000",
     estado: "Activo",
     coloresMadera: [{ nombre: "Nogal claro", color: "#A9794F" }],
+    medidas: "100 x 55 x 40 cm",
+    carpintero: "Luis Fernández",
   },
   {
     codigo: "MES-003",
@@ -194,6 +204,8 @@ export const productos: Producto[] = [
     precio: "$420.000",
     estado: "En producción",
     coloresMadera: [{ nombre: "Roble", color: "#B98655" }],
+    medidas: "45 x 40 x 55 cm",
+    carpintero: "Jorge Ramírez",
   },
   {
     codigo: "MES-004",
@@ -206,6 +218,8 @@ export const productos: Producto[] = [
     precio: "$350.000",
     estado: "Activo",
     coloresMadera: [{ nombre: "Natural", color: "#C8A46E" }],
+    medidas: "40 x 40 x 50 cm",
+    carpintero: "Miguel Rojas",
   },
   {
     codigo: "CAM-001",
@@ -220,6 +234,8 @@ export const productos: Producto[] = [
       { nombre: "Roble claro", color: "#C8A46E" },
       { nombre: "Nogal", color: "#6B4A33" },
     ],
+    medidas: "140 x 190 cm (doble)",
+    carpintero: "Andrés Gómez",
   },
   {
     codigo: "CAM-002",
@@ -231,6 +247,8 @@ export const productos: Producto[] = [
     precio: "$2.100.000",
     estado: "Activo",
     coloresMadera: [{ nombre: "Nogal oscuro", color: "#5C3A21" }],
+    medidas: "160 x 200 cm (queen)",
+    carpintero: "Carlos Pérez",
   },
   {
     codigo: "SIL-001",
@@ -247,6 +265,8 @@ export const productos: Producto[] = [
       { nombre: "Nogal", color: "#6B4A33" },
     ],
     coloresTela: [{ nombre: "Mostaza", color: "#C9A227" }],
+    medidas: "45 x 50 x 90 cm",
+    carpintero: "Luis Fernández",
   },
   {
     codigo: "SIL-002",
@@ -260,6 +280,8 @@ export const productos: Producto[] = [
     estado: "Activo",
     coloresMadera: [{ nombre: "Rattan natural", color: "#C9A66B" }],
     coloresTela: [{ nombre: "Crudo", color: "#E7DCC6" }],
+    medidas: "60 x 80 x 100 cm",
+    carpintero: "Jorge Ramírez",
   },
   {
     codigo: "ESP-001",
@@ -271,6 +293,8 @@ export const productos: Producto[] = [
     precio: "$240.000",
     estado: "Activo",
     coloresMadera: [{ nombre: "Latón", color: "#B08D57" }],
+    medidas: "70 x 100 cm",
+    carpintero: "Miguel Rojas",
   },
   {
     codigo: "ESP-002",
@@ -285,6 +309,8 @@ export const productos: Producto[] = [
       { nombre: "Natural", color: "#C8A46E" },
       { nombre: "Negro", color: "#2B2B2B" },
     ],
+    medidas: "60 x 90 cm",
+    carpintero: "Andrés Gómez",
   },
   {
     codigo: "DEC-001",
@@ -295,6 +321,8 @@ export const productos: Producto[] = [
     stockObjetivo: 15,
     precio: "$180.000",
     estado: "Activo",
+    medidas: "30 x 30 x 40 cm",
+    carpintero: "Carlos Pérez",
   },
   {
     codigo: "COJ-001",
@@ -312,6 +340,7 @@ export const productos: Producto[] = [
       { nombre: "Rayas azules", tipo: "rayas", colores: ["#3F5B66", "#F2ECE1"] },
       { nombre: "Cuadros mostaza", tipo: "cuadros", colores: ["#C9A227", "#2B2B2B"] },
     ],
+    medidas: "45 x 45 cm",
   },
   {
     codigo: "TAP-001",
@@ -327,6 +356,7 @@ export const productos: Producto[] = [
       { nombre: "Cuadros gris", tipo: "cuadros", colores: ["#9CA3AF", "#F2ECE1"] },
       { nombre: "Lunares beige", tipo: "lunares", colores: ["#D9C7B8", "#8A9A82"] },
     ],
+    medidas: "200 x 150 cm",
   },
   {
     codigo: "COR-001",
@@ -341,6 +371,7 @@ export const productos: Producto[] = [
       { nombre: "Lino natural", color: "#E7DCC6" },
       { nombre: "Verde salvia", color: "#8A9A82" },
     ],
+    medidas: "140 x 220 cm por panel",
   },
   {
     codigo: "TEL-001",
@@ -356,6 +387,7 @@ export const productos: Producto[] = [
       { nombre: "Beige", color: "#D9C7B8" },
     ],
     patrones: [{ nombre: "Rayas boho", tipo: "rayas", colores: ["#C97B5A", "#D9C7B8"] }],
+    medidas: "Ancho: 1.40 m",
   },
   {
     codigo: "TEL-002",
@@ -371,6 +403,7 @@ export const productos: Producto[] = [
       { nombre: "Blanco hueso", color: "#F2ECE1" },
     ],
     patrones: [{ nombre: "Cuadros nórdicos", tipo: "cuadros", colores: ["#9CA3AF", "#F2ECE1"] }],
+    medidas: "Ancho: 1.50 m",
   },
   {
     codigo: "TEL-003",
@@ -386,6 +419,7 @@ export const productos: Producto[] = [
       { nombre: "Crudo", color: "#E7DCC6" },
     ],
     patrones: [{ nombre: "Lunares vintage", tipo: "lunares", colores: ["#8A9A82", "#E7DCC6"] }],
+    medidas: "Ancho: 1.40 m",
   },
   {
     codigo: "TEL-004",
@@ -401,6 +435,7 @@ export const productos: Producto[] = [
       { nombre: "Gris oscuro", color: "#2B2B2B" },
     ],
     patrones: [{ nombre: "Rayas mostaza", tipo: "rayas", colores: ["#C9A227", "#2B2B2B"] }],
+    medidas: "Ancho: 1.50 m",
   },
   {
     codigo: "TEL-005",
@@ -416,6 +451,7 @@ export const productos: Producto[] = [
       { nombre: "Beige", color: "#D9C7B8" },
     ],
     patrones: [{ nombre: "Cuadros azules", tipo: "cuadros", colores: ["#3F5B66", "#D9C7B8"] }],
+    medidas: "Ancho: 1.40 m",
   },
 ];
 
