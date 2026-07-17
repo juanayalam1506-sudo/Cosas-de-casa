@@ -63,6 +63,7 @@ export const categorias = [
   "Cojines",
   "Tapetes",
   "Cortinas",
+  "Telas",
 ];
 
 export const subcategoriasPorCategoria: Record<string, string[]> = {
@@ -81,6 +82,7 @@ export function camposVariantePorCategoria(categoria: string): {
   }
   if (categoria === "Cortinas") return { madera: false, tela: true, patron: false };
   if (categoria === "Cojines" || categoria === "Tapetes") return { madera: false, tela: false, patron: true };
+  if (categoria === "Telas") return { madera: false, tela: true, patron: true };
   return { madera: false, tela: false, patron: false };
 }
 
@@ -333,6 +335,81 @@ export const productos: Producto[] = [
       { nombre: "Lino natural", color: "#E7DCC6" },
       { nombre: "Verde salvia", color: "#8A9A82" },
     ],
+  },
+  {
+    codigo: "TEL-001",
+    nombre: "Tela Boho Rayas",
+    categoria: "Telas",
+    coleccion: "Colección Victoria",
+    stock: 40,
+    stockObjetivo: 30,
+    precio: "$45.000",
+    estado: "Activo",
+    coloresTela: [
+      { nombre: "Terracota", color: "#C97B5A" },
+      { nombre: "Beige", color: "#D9C7B8" },
+    ],
+    patrones: [{ nombre: "Rayas boho", tipo: "rayas", colores: ["#C97B5A", "#D9C7B8"] }],
+  },
+  {
+    codigo: "TEL-002",
+    nombre: "Tela Nórdica Cuadros",
+    categoria: "Telas",
+    coleccion: "Colección Oslo",
+    stock: 25,
+    stockObjetivo: 30,
+    precio: "$52.000",
+    estado: "Activo",
+    coloresTela: [
+      { nombre: "Gris", color: "#9CA3AF" },
+      { nombre: "Blanco hueso", color: "#F2ECE1" },
+    ],
+    patrones: [{ nombre: "Cuadros nórdicos", tipo: "cuadros", colores: ["#9CA3AF", "#F2ECE1"] }],
+  },
+  {
+    codigo: "TEL-003",
+    nombre: "Tela Lunares Vintage",
+    categoria: "Telas",
+    coleccion: "Colección Victoria",
+    stock: 4,
+    stockObjetivo: 20,
+    precio: "$48.000",
+    estado: "Activo",
+    coloresTela: [
+      { nombre: "Verde salvia", color: "#8A9A82" },
+      { nombre: "Crudo", color: "#E7DCC6" },
+    ],
+    patrones: [{ nombre: "Lunares vintage", tipo: "lunares", colores: ["#8A9A82", "#E7DCC6"] }],
+  },
+  {
+    codigo: "TEL-004",
+    nombre: "Tela Mostaza Rayas",
+    categoria: "Telas",
+    coleccion: "Colección Oslo",
+    stock: 18,
+    stockObjetivo: 25,
+    precio: "$50.000",
+    estado: "Activo",
+    coloresTela: [
+      { nombre: "Mostaza", color: "#C9A227" },
+      { nombre: "Gris oscuro", color: "#2B2B2B" },
+    ],
+    patrones: [{ nombre: "Rayas mostaza", tipo: "rayas", colores: ["#C9A227", "#2B2B2B"] }],
+  },
+  {
+    codigo: "TEL-005",
+    nombre: "Tela Azul Cuadros",
+    categoria: "Telas",
+    coleccion: "Colección Victoria",
+    stock: 22,
+    stockObjetivo: 25,
+    precio: "$52.000",
+    estado: "Activo",
+    coloresTela: [
+      { nombre: "Azul petróleo", color: "#3F5B66" },
+      { nombre: "Beige", color: "#D9C7B8" },
+    ],
+    patrones: [{ nombre: "Cuadros azules", tipo: "cuadros", colores: ["#3F5B66", "#D9C7B8"] }],
   },
 ];
 
