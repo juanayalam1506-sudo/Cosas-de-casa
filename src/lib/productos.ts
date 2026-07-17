@@ -118,6 +118,8 @@ export const productos: Producto[] = [
       { nombre: "Terracota", color: "#C97B5A" },
       { nombre: "Beige", color: "#D9C7B8" },
       { nombre: "Gris", color: "#9CA3AF" },
+      { nombre: "Azul petróleo", color: "#3F5B66" },
+      { nombre: "Verde oliva", color: "#6E7A4B" },
     ],
   },
   {
@@ -299,6 +301,8 @@ export const productos: Producto[] = [
       { nombre: "Bohemio a rayas", tipo: "rayas", colores: ["#C97B5A", "#D9C7B8"] },
       { nombre: "Cuadros verdes", tipo: "cuadros", colores: ["#8A9A82", "#F2ECE1"] },
       { nombre: "Lunares", tipo: "lunares", colores: ["#D9C7B8", "#6B4A33"] },
+      { nombre: "Rayas azules", tipo: "rayas", colores: ["#3F5B66", "#F2ECE1"] },
+      { nombre: "Cuadros mostaza", tipo: "cuadros", colores: ["#C9A227", "#2B2B2B"] },
     ],
   },
   {
