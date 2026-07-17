@@ -28,7 +28,13 @@ export type Producto = {
   coloresMadera?: Variante[];
   coloresTela?: Variante[];
   patrones?: PatronVariante[];
+  medidas?: string;
+  carpintero?: string;
 };
+
+export function tieneInfoAdicional(producto: Producto): boolean {
+  return Boolean(producto.medidas || producto.carpintero);
+}
 
 export function tieneVariantes(producto: Producto): boolean {
   return Boolean(producto.coloresMadera || producto.coloresTela || producto.patrones);

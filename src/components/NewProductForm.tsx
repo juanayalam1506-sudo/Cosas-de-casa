@@ -36,6 +36,8 @@ export default function NewProductForm({
   const [coloresMadera, setColoresMadera] = useState<Variante[]>([]);
   const [coloresTela, setColoresTela] = useState<Variante[]>([]);
   const [patrones, setPatrones] = useState<PatronVariante[]>([]);
+  const [medidas, setMedidas] = useState("");
+  const [carpintero, setCarpintero] = useState("");
 
   const subcategoriasDisponibles = subcategoriasPorCategoria[categoria];
   const campos = camposVariantePorCategoria(categoria);
@@ -65,6 +67,8 @@ export default function NewProductForm({
       coloresMadera: campos.madera && coloresMadera.length ? coloresMadera : undefined,
       coloresTela: campos.tela && coloresTela.length ? coloresTela : undefined,
       patrones: campos.patron && patrones.length ? patrones : undefined,
+      medidas: medidas.trim() || undefined,
+      carpintero: carpintero.trim() || undefined,
     });
   };
 
@@ -191,6 +195,33 @@ export default function NewProductForm({
           required
           className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
         />
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label htmlFor="medidas" className="mb-1 block text-sm font-medium text-black/70">
+            Medidas
+          </label>
+          <input
+            id="medidas"
+            value={medidas}
+            onChange={(e) => setMedidas(e.target.value)}
+            placeholder="Ej. 180 x 90 x 75 cm"
+            className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+          />
+        </div>
+        <div>
+          <label htmlFor="carpintero" className="mb-1 block text-sm font-medium text-black/70">
+            Carpintero
+          </label>
+          <input
+            id="carpintero"
+            value={carpintero}
+            onChange={(e) => setCarpintero(e.target.value)}
+            placeholder="Ej. Carlos Pérez"
+            className="w-full rounded-lg border border-brand-gray/30 px-3 py-2 text-sm text-black placeholder:text-black/35 focus:border-brand-pink focus:outline-none focus:ring-1 focus:ring-brand-pink"
+          />
+        </div>
       </div>
 
       <div>

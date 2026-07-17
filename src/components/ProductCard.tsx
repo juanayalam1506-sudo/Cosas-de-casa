@@ -3,6 +3,7 @@ import VariantesDisplay from "./VariantesDisplay";
 import {
   estadoProductoStyles,
   estadosProducto,
+  tieneInfoAdicional,
   tieneVariantes,
   type EstadoProducto,
   type Producto,
@@ -54,6 +55,14 @@ export default function ProductCard({
         </div>
         <h3 className="mt-1 text-sm font-semibold text-black">{producto.nombre}</h3>
         <p className="text-xs text-black/40">{producto.codigo}</p>
+
+        {tieneInfoAdicional(producto) && (
+          <p className="mt-1 text-[11px] text-black/40">
+            {[producto.medidas, producto.carpintero && `Hecho por ${producto.carpintero}`]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+        )}
 
         {tieneVariantes(producto) && (
           <div className="mt-2">

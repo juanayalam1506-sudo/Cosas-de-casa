@@ -1,5 +1,11 @@
 import VariantesDisplay from "./VariantesDisplay";
-import { estadoProductoStyles, estadosProducto, type EstadoProducto, type Producto } from "@/lib/productos";
+import {
+  estadoProductoStyles,
+  estadosProducto,
+  tieneInfoAdicional,
+  type EstadoProducto,
+  type Producto,
+} from "@/lib/productos";
 
 export default function ProductTable({
   productos,
@@ -36,7 +42,14 @@ export default function ProductTable({
               return (
                 <tr key={p.codigo}>
                   <td className="px-4 py-3 text-black/50">{p.codigo}</td>
-                  <td className="px-4 py-3 text-black">{p.nombre}</td>
+                  <td className="px-4 py-3 text-black">
+                    {p.nombre}
+                    {tieneInfoAdicional(p) && (
+                      <p className="text-[11px] font-normal text-black/40">
+                        {[p.medidas, p.carpintero && `Hecho por ${p.carpintero}`].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                  </td>
                   <td className="px-4 py-3 text-black/70">
                     {p.subcategoria ? `${p.categoria} · ${p.subcategoria}` : p.categoria}
                   </td>
